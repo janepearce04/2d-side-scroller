@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cfewg324mb53r"]
 
 [ext_resource type="Texture2D" uid="uid://cywktsqlej0dq" path="res://characters/boss/demon_slime_FREE_v1.0_288x160_spritesheet.png" id="1_e2adm"]
-[ext_resource type="Script" uid="uid://d0dakd8h0dpwa" path="res://characters/boss/fire_demon.gd" id="1_vun4s"]
-[ext_resource type="Script" uid="uid://nmgugkl71f5r" path="res://characters/boss/boss_animation_player.gd" id="3_jpm2i"]
+[ext_resource type="Script" uid="uid://d0dakd8h0dpwa" path="res://scripts/fire_demon.gd" id="1_vun4s"]
+[ext_resource type="Script" uid="uid://nmgugkl71f5r" path="res://scripts/boss_animation_player.gd" id="3_jpm2i"]
 [ext_resource type="Script" uid="uid://c7340aql1y4to" path="res://scripts/statemachine.gd" id="4_d6j8e"]
-[ext_resource type="Script" uid="uid://bc3nxw6gxpbe" path="res://characters/boss/idle_state.gd" id="5_htqpq"]
-[ext_resource type="Script" uid="uid://b5xywgchptmkq" path="res://characters/boss/walk_state.gd" id="6_d6j8e"]
+[ext_resource type="Script" uid="uid://bc3nxw6gxpbe" path="res://scripts/idle_state.gd" id="5_htqpq"]
+[ext_resource type="Script" uid="uid://b5xywgchptmkq" path="res://scripts/walk_state.gd" id="6_d6j8e"]
 [ext_resource type="Script" uid="uid://c4r2nj4y8l3kv" path="res://scripts/states.gd" id="6_nciem"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t2dwb"]

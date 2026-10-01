@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var SPEED = 300.0
-@export var JUMP_VELOCITY = -600.0
+@export var SPEED = 250.0
+@export var JUMP_VELOCITY = -300.0
 
 var direction = 0
 #const SPEED = 300.0
@@ -21,7 +21,15 @@ func _physics_process(delta: float) -> void:
 	direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
+	#else:
+	#	velocity.x = move_toward(velocity.x, 0, SPEED)
+	if abs(velocity) >= Vector2.ZERO:
+		%AnimationPlayer.play_move()
+		if velocity.x < 0:
+			%Visuals.scale.x = -1
+		elif velocity.x > 0:
+			%Visuals.scale.x = 1
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		%AnimationPlayer.play_idle()
 
 	move_and_slide()

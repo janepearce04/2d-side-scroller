@@ -1,22 +1,12 @@
 [gd_scene format=4 uid="uid://kgxvbmw8l7bi"]
 
-[ext_resource type="Texture2D" uid="uid://5hsis5uwbakv" path="res://environment/backgrounds/parallax/Layer_0011_0.png" id="1_jkdf5"]
-[ext_resource type="Texture2D" uid="uid://bjc1ghtuoydd8" path="res://environment/backgrounds/parallax/Layer_0010_1.png" id="2_wsu2k"]
-[ext_resource type="Texture2D" uid="uid://bujdiftuphhe" path="res://environment/backgrounds/parallax/Layer_0009_2.png" id="3_k12tt"]
-[ext_resource type="Texture2D" uid="uid://dr7ukuoauyd0u" path="res://environment/backgrounds/parallax/Layer_0008_3.png" id="4_h1bgf"]
-[ext_resource type="Texture2D" uid="uid://cnndg7hueb4ug" path="res://environment/backgrounds/parallax/Layer_0007_Lights.png" id="5_b3802"]
-[ext_resource type="Texture2D" uid="uid://cebvexk4x1fhl" path="res://environment/backgrounds/parallax/Layer_0006_4.png" id="6_fevyy"]
-[ext_resource type="Texture2D" uid="uid://dqijkw6qh0v7v" path="res://environment/backgrounds/parallax/Layer_0005_5.png" id="7_hibaj"]
-[ext_resource type="Texture2D" uid="uid://d1d2nwa1yxgm3" path="res://environment/backgrounds/parallax/Layer_0004_Lights.png" id="8_pdsj5"]
-[ext_resource type="Texture2D" uid="uid://df55etq01eeph" path="res://environment/backgrounds/parallax/Layer_0003_6.png" id="9_ee4r6"]
-[ext_resource type="Texture2D" uid="uid://c58c0j2rrcof7" path="res://environment/backgrounds/parallax/Layer_0002_7.png" id="10_gt3je"]
-[ext_resource type="Texture2D" uid="uid://btf8mthggjn0d" path="res://environment/backgrounds/parallax/Layer_0001_8.png" id="11_3pmx8"]
-[ext_resource type="Texture2D" uid="uid://c68atfaukpkb7" path="res://environment/backgrounds/parallax/Layer_0000_9.png" id="12_u50mg"]
+[ext_resource type="PackedScene" uid="uid://7ql0wcq5jna3" path="res://Scenes/background_lvl1.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://bpfwajg0ewfmu" path="res://Scenes/launchpad.tscn" id="4_jjvhh"]
 [ext_resource type="Texture2D" uid="uid://hplw1hiq5fy0" path="res://environment/tilesets/basic.png" id="13_cbgmd"]
-[ext_resource type="PackedScene" uid="uid://dishya3i1qmbu" path="res://characters/player/main_player.tscn" id="14_1w6v2"]
+[ext_resource type="PackedScene" uid="uid://dishya3i1qmbu" path="res://Scenes/main_player.tscn" id="14_1w6v2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2dwb"]
-size = Vector2(940, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gbba"]
+size = Vector2(1856, 66.5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
 texture = ExtResource("13_cbgmd")
@@ -27,6 +17,7 @@ texture = ExtResource("13_cbgmd")
 20:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.547003, -15.827568, 15.647709, -15.827568, 16.007427, 12.230394, -11.510959, 9.532513)
 20:6/size_in_atlas = Vector2i(2, 2)
 20:6/0 = 0
+20:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.267509, -16.192812, 15.930447, -16.278652, 15.88438, 11.566296, -11.25786, 9.407253)
 0:18/0 = 0
 1:18/0 = 0
 0:19/0 = 0
@@ -250,42 +241,61 @@ texture = ExtResource("13_cbgmd")
 24:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.25017, -16.250168, 15.647709, -15.827568, 8, 8, -15.931538, 12.426601)
 22:6/size_in_atlas = Vector2i(2, 2)
 22:6/0 = 0
+22:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.930447, -16.10455, 15.930447, -16.278652, 16.10455, 16.10455, -15.930447, 16.10455)
 24:6/size_in_atlas = Vector2i(2, 2)
 24:6/0 = 0
+24:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.930447, -16.10455, 15.930447, -16.278652, 16.10455, 16.10455, -15.930447, 16.10455)
 26:6/size_in_atlas = Vector2i(2, 2)
 26:6/0 = 0
+26:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.930447, -16.10455, 15.930447, -16.278652, 16.10455, 16.10455, -15.930447, 16.10455)
 28:6/size_in_atlas = Vector2i(2, 2)
 28:6/0 = 0
+28:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.930447, -16.10455, 15.930447, -16.278652, 16.10455, 16.10455, -15.930447, 16.10455)
 30:6/size_in_atlas = Vector2i(2, 2)
 30:6/0 = 0
+30:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.930447, -16.10455, 13.667107, -15.756344, 8, 8, -15.756344, 13.318897)
 22:8/size_in_atlas = Vector2i(2, 2)
 22:8/0 = 0
+22:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.267509, -16.192812, 15.930447, -16.278652, 15.88438, 11.566296, -11.25786, 9.407253)
 24:8/size_in_atlas = Vector2i(2, 2)
 24:8/0 = 0
+24:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.930447, -16.10455, 15.930447, -16.278652, 16.278652, 12.622486, -15.930447, 12.622486)
 26:8/size_in_atlas = Vector2i(2, 2)
 26:8/0 = 0
+26:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.930447, -16.10455, 15.930447, -16.278652, 16.278652, 12.622486, -15.930447, 12.622486)
 28:8/size_in_atlas = Vector2i(2, 2)
 28:8/0 = 0
+28:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.930447, -16.10455, 13.667107, -15.756344, 8, 8, -15.756344, 13.318897)
 30:14/size_in_atlas = Vector2i(2, 2)
 30:14/0 = 0
+30:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.192814, -16.192812, 16.10455, -16.278652, 12.970692, 8.966318, -15.575943, 12.4916)
 28:12/size_in_atlas = Vector2i(2, 2)
 28:12/0 = 0
+28:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(10.024122, -12.800034, -16.10455, -16.278652, -16.192814, 16.192814, 14.959074, 16.192814)
 28:14/size_in_atlas = Vector2i(2, 2)
 28:14/0 = 0
+28:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.192814, -16.192812, 16.10455, -16.278652, 16.501247, 13.416904, -15.575943, 12.4916)
 26:12/size_in_atlas = Vector2i(2, 2)
 26:12/0 = 0
+26:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.278652, -16.278652, 16.10455, -16.278652, 16.192814, 16.192814, -15.930447, 16.10455)
 26:14/size_in_atlas = Vector2i(2, 2)
 26:14/0 = 0
+26:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.192814, -16.192812, 16.10455, -16.278652, 16.501247, 13.416904, -15.575943, 12.4916)
 24:12/size_in_atlas = Vector2i(2, 2)
 24:12/0 = 0
+24:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.278652, -16.278652, 16.10455, -16.278652, 16.192814, 16.192814, -15.930447, 16.10455)
 22:12/size_in_atlas = Vector2i(2, 2)
 22:12/0 = 0
+22:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10.024122, -12.800034, 16.10455, -16.278652, 16.192814, 16.192814, -14.959074, 16.192814)
 24:14/size_in_atlas = Vector2i(2, 2)
 24:14/0 = 0
+24:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.192814, -16.192812, 16.10455, -16.278652, 16.501247, 13.416904, -15.575943, 12.4916)
 22:14/size_in_atlas = Vector2i(2, 2)
 22:14/0 = 0
+22:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.192814, -16.192812, 16.10455, -16.278652, 16.501247, 13.416904, -15.575943, 12.4916)
 20:14/size_in_atlas = Vector2i(2, 2)
 20:14/0 = 0
+20:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.192814, -16.192812, 16.10455, -16.278652, 16.501247, 13.416904, -12.274279, 10.010937)
 10:6/size_in_atlas = Vector2i(2, 2)
 10:6/0 = 0
 10:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-13.701122, -16.568798, 8, 8, 16.250168, 10.514816, 16.250168, -16.250168)
@@ -363,81 +373,43 @@ sources/0 = SubResource("TileSetAtlasSource_1bvp3")
 
 [node name="MAIN" type="Node2D" unique_id=403668298]
 
-[node name="Background" type="Node2D" parent="." unique_id=987406979]
-modulate = Color(0.7341732, 0.78436816, 0.77231354, 1)
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=102975213]
+position = Vector2(-2.6, -6)
+collision_layer = 3
+collision_mask = 3
 
-[node name="Background Layer" type="TextureRect" parent="Background" unique_id=444649160]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_jkdf5")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1234372185]
+position = Vector2(924.6, 790.75)
+shape = SubResource("RectangleShape2D_8gbba")
 
-[node name="Background Layer2" type="TextureRect" parent="Background" unique_id=749235058]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_wsu2k")
+[node name="ground2" type="Area2D" parent="." unique_id=1424345986]
+position = Vector2(-2.6, -6)
+disable_mode = 1
+collision_layer = 3
+collision_mask = 3
+priority = 1
+angular_damp_space_override = 4
+angular_damp = 2.0
 
-[node name="Background Layer3" type="TextureRect" parent="Background" unique_id=700956497]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("3_k12tt")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground2" unique_id=604755839]
+position = Vector2(924.6, 790.75)
+shape = SubResource("RectangleShape2D_8gbba")
 
-[node name="Background Layer4" type="TextureRect" parent="Background" unique_id=2143730970]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("4_h1bgf")
-
-[node name="Background Layer5" type="TextureRect" parent="Background" unique_id=1976477213]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("5_b3802")
-
-[node name="Background Layer6" type="TextureRect" parent="Background" unique_id=790276671]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("6_fevyy")
-
-[node name="Background Layer7" type="TextureRect" parent="Background" unique_id=1996118316]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("7_hibaj")
-
-[node name="Background Layer8" type="TextureRect" parent="Background" unique_id=1098427051]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("8_pdsj5")
-
-[node name="Background Layer9" type="TextureRect" parent="Background" unique_id=1379520131]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("9_ee4r6")
-
-[node name="Background Layer10" type="TextureRect" parent="Background" unique_id=1177538180]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("10_gt3je")
-
-[node name="Background Layer11" type="TextureRect" parent="Background" unique_id=694691559]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("11_3pmx8")
-
-[node name="Background Layer12" type="TextureRect" parent="Background" unique_id=831463185]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("12_u50mg")
-
-[node name="Area2D" type="Area2D" parent="Background" unique_id=1163697725]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Area2D" unique_id=201082235]
-position = Vector2(464, 737)
-shape = SubResource("RectangleShape2D_t2dwb")
+[node name="Background" parent="." unique_id=922490698 instance=ExtResource("3_8gbba")]
+position = Vector2(-2.6, -6)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1738063482]
+modulate = Color(0.92698413, 0.9520003, 0.8911605, 1)
+z_index = 1
+y_sort_enabled = true
 tile_set = SubResource("TileSet_t2dwb")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="TileMapLayer" unique_id=1434228785]
-tile_map_data = PackedByteArray("AAAWACUAAAAUAAIAAAAYACUAAAAWAAIAAAAaACUAAAAWAAIAAAAbACUAAAAWAAIAAAAcACUAAAAWAAIAAAAeACUAAAAWAAIAAAAgACUAAAAWAAIAAAAiACUAAAAYAAIAAAA=")
+tile_map_data = PackedByteArray("AAAWACUAAAAUAAIAAAAYACUAAAAWAAIAAAAaACUAAAAWAAIAAAAbACUAAAAWAAIAAAAcACUAAAAWAAIAAAAeACUAAAAWAAIAAAAgACUAAAAWAAIAAAAiACUAAAAYAAIAAAAqACIAAAAUAAYAAAAsACIAAAAWAAYAAAAsACQAAAAWAAgAAAAuACIAAAAcAAYAAAAuACQAAAAcAAgAAAAwACIAAAAeAAYAAAA5AB4AAAAUAAYAAAA7AB4AAAAWAAYAAAA7ACAAAAAWAAgAAAA9AB4AAAAcAAYAAAA9ACAAAAAcAAgAAAA/AB4AAAAeAAYAAABHACIAAAAUAAYAAABJACIAAAAWAAYAAABJACQAAAAWAAgAAABLACIAAAAYAAYAAABLACQAAAAYAAgAAABNACIAAAAaAAYAAABNACQAAAAaAAgAAABPACIAAAAcAAYAAABPACQAAAAcAAgAAABRACIAAAAeAAYAAAA=")
 tile_set = SubResource("TileSet_t2dwb")
 
 [node name="CharacterBody2D" parent="." unique_id=1777336445 instance=ExtResource("14_1w6v2")]
-position = Vector2(462, 547)
+position = Vector2(237, 547)
+
+[node name="Node2D" parent="." unique_id=1665433919 instance=ExtResource("4_jjvhh")]
+position = Vector2(294, 730)

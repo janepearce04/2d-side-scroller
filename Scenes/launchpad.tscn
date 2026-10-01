@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bpfwajg0ewfmu"]
+
+[ext_resource type="Script" uid="uid://by6rmt6sqtnuj" path="res://scripts/launchpad.gd" id="1_0m1ss"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(33, 25.25)
+
+[node name="Node2D" type="Node2D" unique_id=1665433919]
+script = ExtResource("1_0m1ss")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2016532009]
+unique_name_in_owner = true
+position = Vector2(-1, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1978180819]
+position = Vector2(0.5, -0.375)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="ColorRect" type="ColorRect" parent="Area2D" unique_id=934948675]
+offset_left = -19.0
+offset_top = -21.0
+offset_right = 21.0
+offset_bottom = 19.0
+color = Color(0.34901962, 1, 0.12941177, 0.50980395)
+metadata/_edit_use_anchors_ = true
