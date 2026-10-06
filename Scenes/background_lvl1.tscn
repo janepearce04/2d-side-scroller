@@ -16,8 +16,10 @@
 modulate = Color(0.7341732, 0.78436816, 0.77231354, 1)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=436268116]
-scroll_base_offset = Vector2(0, 220)
-scroll_limit_end = Vector2(0, -68)
+scroll_offset = Vector2(0, -90)
+scroll_base_offset = Vector2(0, 110)
+scroll_limit_begin = Vector2(0, 50)
+scroll_limit_end = Vector2(0, -70)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=540715737]
 motion_scale = Vector2(0.1, 1)
@@ -99,7 +101,19 @@ motion_mirroring = Vector2(928, 0)
 position = Vector2(464, 420.5)
 texture = ExtResource("10_d30c2")
 
+[node name="fog" type="ParallaxLayer" parent="ParallaxBackground" unique_id=539256824]
+motion_scale = Vector2(0.9, 1)
+motion_mirroring = Vector2(928, 0)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/fog" unique_id=923871224]
+offset_right = 928.0
+offset_bottom = 816.0
+color = Color(0.5686275, 0.5686275, 0.5686275, 0.22745098)
+metadata/_edit_use_anchors_ = true
+
 [node name="ParallaxLayer11" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1706500301]
+z_index = 1
+y_sort_enabled = true
 motion_scale = Vector2(0.9, 1)
 motion_mirroring = Vector2(928, 0)
 
@@ -109,6 +123,8 @@ texture = ExtResource("11_ehdhf")
 
 [node name="ParallaxLayer12" type="ParallaxLayer" parent="ParallaxBackground" unique_id=553547362]
 modulate = Color(0.78703874, 0.90392786, 0.80744666, 1)
+z_index = 4
+y_sort_enabled = true
 motion_mirroring = Vector2(928, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer12" unique_id=1268819403]

@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://ds3g2x3f7odsi"]
+
+[ext_resource type="Script" uid="uid://dikw4qn83rw57" path="res://scripts/main_menu_buttons.gd" id="1_28flt"]
+[ext_resource type="PackedScene" uid="uid://csx05qrme8aca" path="res://Scenes/background_main_menu.tscn" id="2_48xlc"]
+[ext_resource type="Shader" uid="uid://dfd5gesyhhles" path="res://fx/BLUR.gdshader" id="3_1ehe0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2dwb"]
+shader = ExtResource("3_1ehe0")
+shader_parameter/lod = 1.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_28flt"]
+line_spacing = 8.0
+font_size = 48
+font_color = Color(0.7647059, 0.7647059, 0.7647059, 0.60784316)
+outline_size = 8
+outline_color = Color(0.7466161, 0, 0.0075397785, 1)
+shadow_size = 51
+shadow_color = Color(0, 0, 0, 0.8784314)
+stacked_outline_count = 1
+stacked_shadow_count = 1
+stacked_outline_0/size = 3
+stacked_shadow_0/color = Color(0.5908747, 0.12025178, 0.19849569, 1)
+stacked_shadow_0/outline_size = 11
+
+[node name="Main Menu" type="Node2D" unique_id=1712583593]
+script = ExtResource("1_28flt")
+
+[node name="Background2" parent="." unique_id=922490698 instance=ExtResource("2_48xlc")]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=972556370]
+material = SubResource("ShaderMaterial_t2dwb")
+offset_right = 1153.0
+offset_bottom = 681.0
+
+[node name="Control" type="Control" parent="." unique_id=241062895]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1175.0
+offset_bottom = 674.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=481999790]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.5
+offset_top = -33.0
+offset_right = 60.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer" unique_id=1864979744]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Start" type="Button" parent="Control/PanelContainer/VBoxContainer" unique_id=363013207]
+layout_mode = 2
+text = "Start"
+
+[node name="Quit" type="Button" parent="Control/PanelContainer/VBoxContainer" unique_id=441215868]
+layout_mode = 2
+text = "Quit"
+
+[node name="Label" type="Label" parent="Control" unique_id=1008486252]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -195.0
+offset_right = 96.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Debt till 
+THE DEATH"
+label_settings = SubResource("LabelSettings_28flt")
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 171
+uppercase = true
+
+[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

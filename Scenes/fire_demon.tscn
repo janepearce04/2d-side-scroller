@@ -2,25 +2,30 @@
 
 [ext_resource type="Texture2D" uid="uid://cywktsqlej0dq" path="res://characters/boss/demon_slime_FREE_v1.0_288x160_spritesheet.png" id="1_e2adm"]
 [ext_resource type="Script" uid="uid://d0dakd8h0dpwa" path="res://scripts/fire_demon.gd" id="1_vun4s"]
+[ext_resource type="Script" uid="uid://c1111nte3bpwh" path="res://scripts/boss_hurtbox.gd" id="2_fj32u"]
 [ext_resource type="Script" uid="uid://nmgugkl71f5r" path="res://scripts/boss_animation_player.gd" id="3_jpm2i"]
-[ext_resource type="Script" uid="uid://c7340aql1y4to" path="res://scripts/statemachine.gd" id="4_d6j8e"]
-[ext_resource type="Script" uid="uid://bc3nxw6gxpbe" path="res://scripts/idle_state.gd" id="5_htqpq"]
-[ext_resource type="Script" uid="uid://b5xywgchptmkq" path="res://scripts/walk_state.gd" id="6_d6j8e"]
-[ext_resource type="Script" uid="uid://c4r2nj4y8l3kv" path="res://scripts/states.gd" id="6_nciem"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_t2dwb"]
-radius = 35.128338
+[ext_resource type="StyleBox" uid="uid://cv2fsp0jlryyo" path="res://theme/fill_style_box_flat.tres" id="5_0xrn0"]
+[ext_resource type="StyleBox" uid="uid://bt0g155ltqeol" path="res://theme/background_style_box_flat.tres" id="5_6bnvd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2dwb"]
-radius = 23.0
-height = 72.0
+radius = 35.0
+height = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t2dwb"]
+radius = 40.012497
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m2va7"]
+radius = 21.023796
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3f7dd"]
+radius = 29.017237
 
 [sub_resource type="Animation" id="Animation_coovv"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords:y")
+tracks/0/path = NodePath("visuals/Sprite2D:frame_coords:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -32,7 +37,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame_coords:x")
+tracks/1/path = NodePath("visuals/Sprite2D:frame_coords:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -44,7 +49,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame_coords")
+tracks/2/path = NodePath("visuals/Sprite2D:frame_coords")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -53,22 +58,69 @@ tracks/2/keys = {
 "update": 1,
 "values": [Vector2i(0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("visuals/ATTACK HITBOXS/Collision1:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("visuals/ATTACK HITBOXS/Collision2:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_nciem"]
 resource_name = "attack"
-length = 2.1333334
-loop_mode = 1
+length = 1.5666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("visuals/Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4, 0.53333336, 0.6666667, 0.8, 0.93333334, 1.0666667, 1.3333334, 1.4666667, 1.6, 1.7333333, 1.8666667, 2),
+"times": PackedFloat32Array(0, 0.093333334, 0.18666667, 0.28, 0.37333333, 0.46666667, 0.56, 0.6533333, 0.74666667, 0.93333334, 1.0266666, 1.12, 1.2133334, 1.3066666, 1.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2), Vector2i(9, 2), Vector2i(10, 2), Vector2i(11, 2), Vector2i(12, 2), Vector2i(13, 2), Vector2i(14, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/ATTACK HITBOXS/Collision1:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.93333334, 1.0333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("visuals/ATTACK HITBOXS/Collision2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_vun4s"]
@@ -77,7 +129,7 @@ length = 2.6666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("visuals/Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -89,18 +141,18 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_06nmr"]
 resource_name = "hurt"
-length = 0.8
+length = 0.6666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("visuals/Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4, 0.53333336, 0.6666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(4, 4)]
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_d6j8e"]
@@ -110,7 +162,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords:x")
+tracks/0/path = NodePath("visuals/Sprite2D:frame_coords:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -122,7 +174,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame_coords:y")
+tracks/1/path = NodePath("visuals/Sprite2D:frame_coords:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -139,7 +191,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("visuals/Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -159,12 +211,48 @@ _data = {
 &"walk": SubResource("Animation_htqpq")
 }
 
-[node name="visuals" type="Node2D" unique_id=1162622868]
+[sub_resource type="Theme" id="Theme_fj32u"]
 
-[node name="Fire Demon" type="CharacterBody2D" parent="." unique_id=1014972430]
+[node name="Fire Demon" type="CharacterBody2D" unique_id=1014972430]
+modulate = Color(0.88709784, 0.7110254, 0.68461454, 1)
+collision_layer = 8
+collision_mask = 11
 script = ExtResource("1_vun4s")
 
-[node name="Sprite2D" type="Sprite2D" parent="Fire Demon" unique_id=1053854893]
+[node name="HITBOX" type="CollisionShape2D" parent="." unique_id=1822059558]
+unique_name_in_owner = true
+position = Vector2(0, -53)
+shape = SubResource("CapsuleShape2D_t2dwb")
+
+[node name="visuals" type="Node2D" parent="." unique_id=1162622868]
+scale = Vector2(1.2, 1.2)
+
+[node name="HURTBOX" type="Area2D" parent="visuals" unique_id=1922199944]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -45)
+collision_layer = 8
+script = ExtResource("2_fj32u")
+
+[node name="collision" type="CollisionShape2D" parent="visuals/HURTBOX" unique_id=1080742363]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_t2dwb")
+
+[node name="ATTACK HITBOXS" type="Area2D" parent="visuals" unique_id=760573716]
+visible = false
+collision_layer = 8
+
+[node name="Collision1" type="CollisionShape2D" parent="visuals/ATTACK HITBOXS" unique_id=975333577]
+position = Vector2(-91, -50)
+shape = SubResource("CircleShape2D_m2va7")
+disabled = true
+
+[node name="Collision2" type="CollisionShape2D" parent="visuals/ATTACK HITBOXS" unique_id=273936696]
+position = Vector2(-84, -23)
+shape = SubResource("CircleShape2D_3f7dd")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="visuals" unique_id=1053854893]
 y_sort_enabled = true
 texture_filter = 5
 texture = ExtResource("1_e2adm")
@@ -172,55 +260,54 @@ offset = Vector2(0, -79.945)
 hframes = 22
 vframes = 5
 
-[node name="Area2D" type="Area2D" parent="Fire Demon" unique_id=1922199944]
-position = Vector2(0, -45)
-
-[node name="HURTBOX" type="CollisionShape2D" parent="Fire Demon/Area2D" unique_id=1080742363]
+[node name="AttackRay" type="RayCast2D" parent="visuals" unique_id=459450180]
 unique_name_in_owner = true
-visible = false
-shape = SubResource("CircleShape2D_t2dwb")
+position = Vector2(0, -14.166666)
+target_position = Vector2(-140.83333, 1.9073486e-06)
 
-[node name="HITBOX" type="CollisionShape2D" parent="Fire Demon" unique_id=1822059558]
-unique_name_in_owner = true
-visible = false
-position = Vector2(0, -45)
-shape = SubResource("CapsuleShape2D_t2dwb")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Fire Demon" unique_id=315925407]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=315925407]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_nciem")
+autoplay = &"RESET"
 script = ExtResource("3_jpm2i")
 
-[node name="StateMachine" type="Node" parent="Fire Demon" unique_id=1169236014]
-script = ExtResource("4_d6j8e")
-metadata/_custom_type_script = "uid://c7340aql1y4to"
+[node name="Health_Bar" type="CanvasLayer" parent="." unique_id=842436570]
+unique_name_in_owner = true
 
-[node name="idle" type="Node" parent="Fire Demon/StateMachine" unique_id=441904617 node_paths=PackedStringArray("walk_state")]
-script = ExtResource("5_htqpq")
-walk_state = NodePath("../walk")
-metadata/_custom_type_script = "uid://c4r2nj4y8l3kv"
+[node name="Health" type="ProgressBar" parent="Health_Bar" unique_id=366203416]
+unique_name_in_owner = true
+z_index = 4
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -135.0
+offset_top = -29.0
+offset_right = 135.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_fj32u")
+theme_override_styles/background = ExtResource("5_6bnvd")
+theme_override_styles/fill = ExtResource("5_0xrn0")
+step = 0.1
+value = 100.0
+rounded = true
+show_percentage = false
 
-[node name="walk" type="Node" parent="Fire Demon/StateMachine" unique_id=1576902005 node_paths=PackedStringArray("idle_state")]
-script = ExtResource("6_d6j8e")
-idle_state = NodePath("../idle")
-metadata/_custom_type_script = "uid://c4r2nj4y8l3kv"
-
-[node name="attack" type="Node" parent="Fire Demon/StateMachine" unique_id=1328209991]
-script = ExtResource("6_nciem")
-metadata/_custom_type_script = "uid://c4r2nj4y8l3kv"
-
-[node name="hurt" type="Node" parent="Fire Demon/StateMachine" unique_id=2086176629]
-script = ExtResource("6_nciem")
-metadata/_custom_type_script = "uid://c4r2nj4y8l3kv"
-
-[node name="death" type="Node" parent="Fire Demon/StateMachine" unique_id=452407670]
-script = ExtResource("6_nciem")
-metadata/_custom_type_script = "uid://c4r2nj4y8l3kv"
-
-[node name="intro" type="Node" parent="Fire Demon/StateMachine" unique_id=2095529241]
-script = ExtResource("6_nciem")
-metadata/_custom_type_script = "uid://c4r2nj4y8l3kv"
-
-[node name="inactive" type="Node" parent="Fire Demon/StateMachine" unique_id=1387115739]
-script = ExtResource("6_nciem")
-metadata/_custom_type_script = "uid://c4r2nj4y8l3kv"
+[node name="Label" type="Label" parent="Health_Bar" unique_id=69656129]
+z_index = 5
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -54.0
+offset_right = 48.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Fire Demon"

@@ -1,0 +1,181 @@
+[gd_scene format=4 uid="uid://kgxvbmw8l7bi"]
+
+[ext_resource type="Script" uid="uid://7uxdskwfdagb" path="res://scripts/main.gd" id="1_21xkr"]
+[ext_resource type="PackedScene" uid="uid://7ql0wcq5jna3" path="res://Scenes/background_lvl1.tscn" id="3_8gbba"]
+[ext_resource type="TileSet" uid="uid://dsaf2on4essry" path="res://environment/tilesets/new_tile_set.tres" id="3_344ge"]
+[ext_resource type="PackedScene" uid="uid://bpfwajg0ewfmu" path="res://Scenes/launchpad.tscn" id="4_jjvhh"]
+[ext_resource type="Texture2D" uid="uid://irfel06u2u04" path="res://environment/tilesets/tile_set_aleatorio.png" id="4_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://dq6d177rnhqqm" path="res://Scenes/flierskull.tscn" id="5_kry3j"]
+[ext_resource type="Script" uid="uid://fcfw14i4eok7" path="res://scripts/health_canvas.gd" id="7_6bp64"]
+[ext_resource type="PackedScene" uid="uid://dcs2l6j8gwxja" path="res://Scenes/crawler.tscn" id="8_344ge"]
+[ext_resource type="PackedScene" uid="uid://dishya3i1qmbu" path="res://Scenes/main_player.tscn" id="14_1w6v2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gbba"]
+size = Vector2(6230, 66.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hptm8"]
+texture = ExtResource("4_ynf5e")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/next_alternative_id = 9
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, 0.17985725, 8, 0.17985725)
+3:0/7 = 7
+4:0/next_alternative_id = 7
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, 0.17985725, 8, 0.17985725)
+5:0/next_alternative_id = 4
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, 0.17985725, 8, 0.17985725)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+4:1/next_alternative_id = 2
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, 0.17985725, 8, 0.17985725)
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, 0.17985725, 8, 0.17985725, -8)
+5:2/0 = 0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, -8, -8, -0.17985725, -8, -0.17985725, 8)
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -0.17985725, -8, -0.17985725)
+0:4/0 = 0
+2:4/0 = 0
+4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, 0.17985725, 8, 0.17985725)
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_344ge"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 5
+sources/0 = SubResource("TileSetAtlasSource_hptm8")
+
+[sub_resource type="LabelSettings" id="LabelSettings_21xkr"]
+font_size = 12
+outline_color = Color(0.45247537, 0.058228176, 0.056341823, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2dwb"]
+size = Vector2(18, 898)
+
+[node name="MAIN" type="Node2D" unique_id=403668298]
+script = ExtResource("1_21xkr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=114725001]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1234372185]
+position = Vector2(3109, 847)
+shape = SubResource("RectangleShape2D_8gbba")
+
+[node name="Background" parent="." unique_id=922490698 instance=ExtResource("3_8gbba")]
+position = Vector2(-2.6, -6)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1738063482]
+modulate = Color(0.92698413, 0.9520003, 0.8911605, 1)
+z_index = 1
+y_sort_enabled = true
+tile_set = ExtResource("3_344ge")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="TileMapLayer" unique_id=1875664381]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="TileMapLayer/ParallaxBackground" unique_id=1416349605]
+motion_scale = Vector2(0.95, 0.95)
+motion_offset = Vector2(10, -10)
+
+[node name="background plats" type="TileMapLayer" parent="TileMapLayer/ParallaxBackground/ParallaxLayer" unique_id=2011872119]
+tile_map_data = PackedByteArray("AAB3ABgAAAA2AAIAAAB4ABgAAAA4AAYAAAB5ABgAAAA8AAYAAAB6ABgAAAA+AAYAAAB7ABgAAAAsAAAAAAB8ABgAAAAqAAAAAAB9ABgAAAA+AAYAAAB+ABgAAAAoAAAAAAB/ABgAAAAqAAwAAACAABgAAAAqAAwAAACBABgAAAA6AAYAAACCABgAAAAoAAAAAACDABgAAAAqAAwAAACEABgAAAA+AAwAAAB9ABkAAAA6AAgAAAB8ABkAAAA6AAgAAAB7ABkAAAA6AAgAAAB6ABkAAAA6AAgAAAB+ABkAAAAuAAYAAAB/ABkAAAA6AA4AAACAABkAAAAqAAQAAACBABkAAAA6AAgAAACCABkAAAAuAAYAAACDABkAAAAqAA4AAACEABkAAAA+AAgAAAB5ABkAAAAkAAwAAAB4ABkAAAA4AAgAAACPABsAAAAiAAQAAACQABsAAAAoAA4AAACRABsAAAAqAA4AAACSABsAAAAyAAQAAACTABoAAABAAAYAAACSABoAAAA8AAwAAACPABoAAAAiAAIAAACQABoAAAAoAAAAAACRABoAAAA6AAYAAACQACAAAAAkAAQAAACQACEAAAAoAA4AAACPABwAAAAiAAQAAACRACAAAAAkAAQAAACSAB8AAAAyAAYAAACRACEAAAAkAAwAAACSACAAAAA+AAgAAACSAB4AAAAyAAgAAACSAB0AAAAkAAgAAACSABwAAAAyAAYAAACPAB8AAAAiAAoAAACPAB4AAAAiAAYAAACPAB0AAAAiAAoAAACPACAAAAAiAAYAAACRAB8AAAAuAAoAAACQAB8AAAAqAAAAAACPACEAAAA4AAgAAACSACEAAAA+AAgAAABHABcAAAA2AAIAAABIABcAAAAqAAAAAABJABcAAAA8AAwAAABKABcAAAA6AAwAAABKABgAAAAsAA4AAABLABgAAAA+AA4AAABMABgAAAA4AAIAAABNABgAAAA4AAIAAABOABgAAAA4AAIAAABPABgAAAA4AAIAAABQABgAAAA4AAIAAABRABgAAAA4AAIAAABSABgAAAA6AAIAAABLABcAAAAyAAIAAABIABgAAAA4AAgAAABJABgAAAAsAA4AAAAHABQAAAA2AAIAAAAIABQAAAA4AAIAAAAJABQAAAA4AAIAAAAKABQAAAA6AAIAAAAOABsAAAA2AAIAAAAPABsAAAA4AAIAAAAQABsAAAA4AAIAAAARABsAAAA6AAIAAAANABgAAAA6AAIAAAAMABgAAAA2AAIAAAArACkAAAA4AAIAAAAsACkAAAA4AAIAAAAtACkAAAA4AAIAAAAuACkAAAA4AAIAAAAvACkAAAA4AAIAAAAwACkAAAA6AAIAAAAqACkAAAA2AAIAAAA=")
+tile_set = ExtResource("3_344ge")
+
+[node name="foreground plats" type="TileMapLayer" parent="TileMapLayer" unique_id=1434228785]
+tile_map_data = PackedByteArray("AAAWACUAAAAUAAIAAAAYACUAAAAWAAIAAAAaACUAAAAWAAIAAAAbACUAAAAWAAIAAAAcACUAAAAWAAIAAAAeACUAAAAWAAIAAAAgACUAAAAWAAIAAAAiACUAAAAYAAIAAAAqACIAAAAUAAYAAAAsACIAAAAWAAYAAAAsACQAAAAWAAgAAAAuACIAAAAcAAYAAAAuACQAAAAcAAgAAAAwACIAAAAeAAYAAAA5AB4AAAAUAAYAAAA7AB4AAAAWAAYAAAA7ACAAAAAWAAgAAAA9AB4AAAAcAAYAAAA9ACAAAAAcAAgAAAA/AB4AAAAeAAYAAABHACIAAAAUAAYAAABJACIAAAAWAAYAAABJACQAAAAWAAgAAABLACIAAAAYAAYAAABLACQAAAAYAAgAAABNACIAAAAaAAYAAABNACQAAAAaAAgAAABPACIAAAAcAAYAAABPACQAAAAcAAgAAABRACIAAAAeAAYAAABPAB0AAAARABYAAAA/ACgAAAAUAAIAAABBACgAAAAWAAIAAABCACgAAAAWAAIAAABDACgAAAAWAAIAAABFACgAAAAYAAIAAABbACgAAAAUAAIAAABcACgAAAAWAAIAAABdACgAAAAWAAIAAABeACgAAAAWAAIAAABfACgAAAAWAAIAAABgACgAAAAWAAIAAABhACgAAAAYAAIAAABsACUAAAAQAAYAAABsACYAAAAcAAgAAABrACUAAAACAAQAAABqACUAAAACAAQAAABpACUAAAAMAAQAAABoACUAAAAAAAgAAABrACYAAAAYAA4AAABqACYAAAAYAAgAAABpACYAAAAGAA4AAABoACYAAAAWAAgAAABoACQAAAAAAAIAAABpACQAAAACAAIAAABqACQAAAAIAAwAAABrACQAAAAYAAwAAABsACQAAAAQAAIAAAB0ACYAAAAUAAIAAAB1ACUAAAAAAAIAAAB1ACYAAAAWAA4AAAB2ACUAAAAcAAwAAAB2ACYAAAAcAAgAAABjABsAAAAUAAIAAABkABsAAAAYAAIAAABmABwAAAAUAAIAAABnABwAAAAWAAIAAABoABwAAAAWAAIAAABpABwAAAAWAAIAAABqABwAAAAYAAIAAABoACIAAAAAABsAAABpACIAAAABABsAAABqACIAAAACABsAAABrACIAAAADABsAAABnABoAAAAEABsAAABoABoAAAAFABsAAABpABoAAAAGABsAAABqABoAAAAHABsAAABcACYAAAAIABsAAABdACYAAAAJABsAAABgACYAAAAGABgAAABbADEAAAAAABgAAABdADEAAAACABgAAABfADEAAAAEABgAAABhADEAAAAEABgAABBjADEAAAACABgAABB9ACIAAAAAAAIAAAB+ACIAAAAOAAIAAAB/ACIAAAAYAAwAAACAACIAAAAIAAwAAACBACIAAAAIAAwAAACCACIAAAAMAAoAAACDACIAAAAMAAoAAACEACIAAAAKAAAAAACFACIAAAAEAAoAAACGACIAAAAOAAIAAACHACIAAAAEAAoAAACIACIAAAAIAAwAAACJACIAAAAMAAoAAACKACIAAAAIAAAAAACLACIAAAAQAAIAAACLACMAAAAQAAgAAACLACQAAAAQAAQAAACLACUAAAAcAAgAAACKACQAAAAMAAQAAACKACMAAAAIAAIAAACKACUAAAAYAAgAAACJACUAAAAIAA4AAACJACQAAAAMAAQAAACJACMAAAAKAAIAAACHACMAAAAEAAQAAACIACMAAAACAAQAAACGACMAAAAOAAQAAACFACMAAAAKAA4AAACEACMAAAAEAAYAAACDACMAAAAOAAwAAACCACMAAAAEAAYAAACBACMAAAAIAAQAAAB/ACMAAAAIAA4AAACAACMAAAACAAwAAAB+ACMAAAAIAAQAAAB9ACMAAAAWAA4AAAB8ACMAAAAWAAIAAAB7ACMAAAAWAAIAAAB6ACMAAAAUAAIAAACIACQAAAAKAAIAAACIACUAAAAKAA4AAACHACQAAAAOAAQAAACGACQAAAAWAAgAAACHACUAAAAWAAgAAACRABoAAAAYAAwAAACRABsAAAAOAAQAAACRABwAAAAOAAQAAACRAB0AAAAMAAQAAACRAB4AAAACAAwAAACSABsAAAAQAAoAAACSABoAAAAQAAIAAACSABwAAAAQAAQAAACSAB0AAAAQAAYAAACSAB4AAAAcAAgAAACQABoAAAAAAAIAAACQABsAAAAAAAYAAACQABwAAAAAAAgAAACQAB4AAAAWAAgAAACQAB0AAAAAAAoAAACUACQAAAAIAAIAAACVACQAAAACAAIAAACWACQAAAAMAAoAAACXACQAAAAMAAoAAACYACQAAAAYAAYAAACZACQAAAAWAAIAAACaACQAAAAWAAIAAACbACQAAAAWAAIAAACcACQAAAAYAAIAAACVACUAAAAYAAgAAACWACUAAAAIAA4AAACXACUAAAAaAA4AAACYACUAAAAcAAgAAACUACUAAAAIAAQAAACUACMAAAAYAAwAAACTACMAAAAAAAIAAACTACQAAAAAAAoAAACTACUAAAAWAAgAAACkABwAAAAWAAwAAAClABwAAAAYAAYAAACmABwAAAAYAAwAAACnABwAAAAMAAoAAACoABwAAAAYAAYAAACpABwAAAAIAAwAAACqABwAAAAIAAwAAACrABwAAAAKAAAAAACsABwAAAAYAAYAAACtABwAAAAOAAIAAACuABwAAAAMAAoAAACvABwAAAAYAAwAAACwABwAAAAIAAwAAACxABwAAAAMAAoAAACyABwAAAAQAAIAAACyAB0AAAAcAAgAAACxAB0AAAAIAAIAAACuAB0AAAAGAAIAAACtAB0AAAAGAAIAAACsAB0AAAAIAAIAAAClAB0AAAAGAAIAAACmAB0AAAAGAAIAAACkAB0AAAAAAAoAAACnAB0AAAAOAAQAAACoAB0AAAAGAAIAAACpAB0AAAAOAAQAAACqAB0AAAAKAAIAAACrAB0AAAAIAAIAAACvAB0AAAAEAAQAAACwAB0AAAAEAAQAAACyAB4AAAAcAAgAAACxAB4AAAAOAAwAAACwAB4AAAAOAAwAAACvAB4AAAAIAAQAAACuAB4AAAAIAAQAAACtAB4AAAAEAAYAAACsAB4AAAAMAAYAAACrAB4AAAAaAAgAAACqAB4AAAAGAA4AAACpAB4AAAAaAA4AAACoAB4AAAAMAAYAAACnAB4AAAACAAwAAACmAB4AAAAYAAgAAAClAB4AAAAEAAYAAACkAB4AAAAWAAgAAACgAB8AAAAcAAYAAACgACAAAAAcAAgAAACfAB8AAAAWAAwAAACfACAAAAAWAAgAAAA=")
+tile_set = ExtResource("3_344ge")
+
+[node name="spikes" type="TileMapLayer" parent="TileMapLayer" unique_id=204966830]
+tile_map_data = PackedByteArray("AACRAB8AAAAEAAMAAACQAB8AAAAEAAMAAACSAB8AAAAEAAMAAABlADIAAAAFAAAAAABmADIAAAADAAAAAABnADIAAAAEAAAAAABoADIAAAAEAAAAAABpADIAAAAFAAAAAABqADIAAAAFAAAAAABrADIAAAADAAAAAABsADIAAAAEAAEAAABtADIAAAAFAAAAAABuADIAAAAEAAAAAABvADIAAAAFAAAAAABwADIAAAAEAAAAAABxADIAAAADAAAAAAA=")
+tile_set = SubResource("TileSet_344ge")
+
+[node name="PLAYER" parent="." unique_id=1777336445 instance=ExtResource("14_1w6v2")]
+unique_name_in_owner = true
+position = Vector2(126, 697)
+collision_mask = 7
+jump_cut_multiplier = 0.249
+gravity = 800.0
+fall_gravity = 1200.0
+
+[node name="Node2D" parent="." unique_id=1665433919 instance=ExtResource("4_jjvhh")]
+position = Vector2(294, 783)
+
+[node name="MOB" parent="." unique_id=83613693 instance=ExtResource("5_kry3j")]
+position = Vector2(1272, 736)
+
+[node name="MOB2" parent="." unique_id=1545331719 instance=ExtResource("5_kry3j")]
+position = Vector2(1515, 621)
+
+[node name="MOB3" parent="." unique_id=1626028964 instance=ExtResource("5_kry3j")]
+position = Vector2(1803, 744)
+
+[node name="MOB4" parent="." unique_id=494116212 instance=ExtResource("5_kry3j")]
+position = Vector2(1675, 422)
+
+[node name="Initial Instructions" type="Label" parent="." unique_id=939921233]
+offset_left = 40.0
+offset_top = 623.0
+offset_right = 255.0
+offset_bottom = 646.0
+text = "Press (A for left, D for Right)"
+horizontal_alignment = 1
+
+[node name="Initial Instructions2" type="Label" parent="." unique_id=1667720368]
+offset_left = 181.0
+offset_top = 702.0
+offset_right = 396.0
+offset_bottom = 725.0
+text = "Press (Spacebar) to jump"
+horizontal_alignment = 1
+
+[node name="Initial Instructions3" type="Label" parent="." unique_id=1925380410]
+offset_left = 626.0
+offset_top = 428.0
+offset_right = 841.0
+offset_bottom = 451.0
+text = "Press (Shift) to dash"
+horizontal_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=439191455]
+script = ExtResource("7_6bp64")
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1416996260]
+offset_right = 129.0
+offset_bottom = 40.0
+
+[node name="Health" type="Label" parent="CanvasLayer/Panel" unique_id=418149835]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 52.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_21xkr")
+vertical_alignment = 1
+uppercase = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=741116924]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1027358612]
+position = Vector2(-1, 439)
+shape = SubResource("RectangleShape2D_t2dwb")
+
+[node name="MOB5" parent="." unique_id=474142794 instance=ExtResource("8_344ge")]
+position = Vector2(2076, 757)
+
+[node name="MOB6" parent="." unique_id=1386410975 instance=ExtResource("8_344ge")]
+position = Vector2(2327, 754)
+
+[node name="MOB7" parent="." unique_id=1615822758 instance=ExtResource("8_344ge")]
+position = Vector2(2604, 735)
