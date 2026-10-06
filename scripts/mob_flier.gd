@@ -12,7 +12,6 @@ func _ready() -> void:
 	super()
 	%AnimationPlayer.play(&"idle")
 
-
 func _roam(delta: float) -> void:
 	velocity = velocity.move_toward(roam_direction * roam_speed, acceleration * delta)
 

@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dcs2l6j8gwxja" path="res://Scenes/crawler.tscn" id="8_344ge"]
 [ext_resource type="PackedScene" uid="uid://xq2rwpix4wsi" path="res://Scenes/pause_menu.tscn" id="10_hptm8"]
 [ext_resource type="PackedScene" uid="uid://dishya3i1qmbu" path="res://Scenes/main_player.tscn" id="14_1w6v2"]
+[ext_resource type="PackedScene" uid="uid://csimeewevvlnm" path="res://Scenes/Options.tscn" id="18_b3802"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gbba"]
 size = Vector2(10579, 66.5)
@@ -434,55 +435,57 @@ position = Vector2(873, 789)
 [node name="LAUNCHPAD3" parent="." unique_id=1011338251 instance=ExtResource("4_jjvhh")]
 position = Vector2(4032, 781)
 
-[node name="MOB" parent="." unique_id=83613693 instance=ExtResource("5_kry3j")]
+[node name="MOBS" type="Node2D" parent="." unique_id=1525112933]
+
+[node name="MOB" parent="MOBS" unique_id=83613693 instance=ExtResource("5_kry3j")]
 position = Vector2(1272, 736)
 
-[node name="MOB2" parent="." unique_id=1545331719 instance=ExtResource("5_kry3j")]
+[node name="MOB2" parent="MOBS" unique_id=1545331719 instance=ExtResource("5_kry3j")]
 position = Vector2(1515, 621)
 
-[node name="MOB3" parent="." unique_id=1626028964 instance=ExtResource("5_kry3j")]
+[node name="MOB3" parent="MOBS" unique_id=1626028964 instance=ExtResource("5_kry3j")]
 position = Vector2(1893, 565)
 
-[node name="MOB4" parent="." unique_id=494116212 instance=ExtResource("5_kry3j")]
+[node name="MOB4" parent="MOBS" unique_id=494116212 instance=ExtResource("5_kry3j")]
 position = Vector2(1675, 422)
 
-[node name="MOB5" parent="." unique_id=474142794 instance=ExtResource("8_344ge")]
+[node name="MOB5" parent="MOBS" unique_id=474142794 instance=ExtResource("8_344ge")]
 position = Vector2(2099, 524)
 
-[node name="MOB6" parent="." unique_id=1386410975 instance=ExtResource("8_344ge")]
+[node name="MOB6" parent="MOBS" unique_id=1386410975 instance=ExtResource("8_344ge")]
 position = Vector2(2438, 556)
 
-[node name="MOB7" parent="." unique_id=1615822758 instance=ExtResource("8_344ge")]
+[node name="MOB7" parent="MOBS" unique_id=1615822758 instance=ExtResource("8_344ge")]
 position = Vector2(2749, 426)
 
-[node name="MOB8" parent="." unique_id=17885274 instance=ExtResource("8_344ge")]
+[node name="MOB8" parent="MOBS" unique_id=17885274 instance=ExtResource("8_344ge")]
 position = Vector2(4379, 403)
 
-[node name="MOB9" parent="." unique_id=2146475500 instance=ExtResource("8_344ge")]
+[node name="MOB9" parent="MOBS" unique_id=2146475500 instance=ExtResource("8_344ge")]
 position = Vector2(4463, 405)
 
-[node name="MOB10" parent="." unique_id=853634263 instance=ExtResource("8_344ge")]
+[node name="MOB10" parent="MOBS" unique_id=853634263 instance=ExtResource("8_344ge")]
 position = Vector2(4566, 403)
 
-[node name="MOB16" parent="." unique_id=1988202409 instance=ExtResource("8_344ge")]
+[node name="MOB16" parent="MOBS" unique_id=1988202409 instance=ExtResource("8_344ge")]
 position = Vector2(5243, 113)
 
-[node name="MOB11" parent="." unique_id=811046606 instance=ExtResource("5_kry3j")]
+[node name="MOB11" parent="MOBS" unique_id=811046606 instance=ExtResource("5_kry3j")]
 position = Vector2(4540, 184)
 
-[node name="MOB12" parent="." unique_id=1485336400 instance=ExtResource("5_kry3j")]
+[node name="MOB12" parent="MOBS" unique_id=1485336400 instance=ExtResource("5_kry3j")]
 position = Vector2(4949, 88)
 
-[node name="MOB13" parent="." unique_id=1848366870 instance=ExtResource("5_kry3j")]
+[node name="MOB13" parent="MOBS" unique_id=1848366870 instance=ExtResource("5_kry3j")]
 position = Vector2(5249, 350)
 
-[node name="MOB14" parent="." unique_id=222442842 instance=ExtResource("5_kry3j")]
+[node name="MOB14" parent="MOBS" unique_id=222442842 instance=ExtResource("5_kry3j")]
 position = Vector2(5448, 35)
 
-[node name="MOB15" parent="." unique_id=2067648344 instance=ExtResource("5_kry3j")]
+[node name="MOB15" parent="MOBS" unique_id=2067648344 instance=ExtResource("5_kry3j")]
 position = Vector2(5947, 116)
 
-[node name="MOB17" parent="." unique_id=1866744376 instance=ExtResource("5_kry3j")]
+[node name="MOB17" parent="MOBS" unique_id=1866744376 instance=ExtResource("5_kry3j")]
 position = Vector2(10504, 752)
 
 [node name="FIRE_DEMON" parent="." unique_id=1014972430 instance=ExtResource("6_k12tt")]
@@ -513,7 +516,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.38431373, 0.44705883, 0.5137255, 1)
 
-[node name="Control" type="Control" parent="." unique_id=1789592410]
+[node name="instructions" type="Control" parent="." unique_id=1789592410]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -65.0
@@ -521,7 +524,7 @@ offset_top = -29.0
 offset_right = -25.0
 offset_bottom = 11.0
 
-[node name="Initial Instructions" type="Label" parent="Control" unique_id=939921233]
+[node name="Initial Instructions" type="Label" parent="instructions" unique_id=939921233]
 layout_mode = 0
 offset_left = 85.0
 offset_top = 623.0
@@ -530,7 +533,7 @@ offset_bottom = 646.0
 text = "Press (A for left, D for Right)"
 horizontal_alignment = 1
 
-[node name="Initial Instructions2" type="Label" parent="Control" unique_id=1667720368]
+[node name="Initial Instructions2" type="Label" parent="instructions" unique_id=1667720368]
 layout_mode = 0
 offset_left = 181.0
 offset_top = 702.0
@@ -539,7 +542,7 @@ offset_bottom = 725.0
 text = "Press (Spacebar) to jump"
 horizontal_alignment = 1
 
-[node name="Initial Instructions7" type="Label" parent="Control" unique_id=1744773372]
+[node name="Initial Instructions7" type="Label" parent="instructions" unique_id=1744773372]
 layout_mode = 0
 offset_left = 244.0
 offset_top = 749.0
@@ -548,7 +551,7 @@ offset_bottom = 772.0
 text = "Green Zones like this are Launchpads :)"
 horizontal_alignment = 1
 
-[node name="Initial Instructions3" type="Label" parent="Control" unique_id=1925380410]
+[node name="Initial Instructions3" type="Label" parent="instructions" unique_id=1925380410]
 layout_mode = 0
 offset_left = 626.0
 offset_top = 428.0
@@ -557,7 +560,7 @@ offset_bottom = 451.0
 text = "Press (Shift) to dash"
 horizontal_alignment = 1
 
-[node name="Initial Instructions4" type="Label" parent="Control" unique_id=92851282]
+[node name="Initial Instructions4" type="Label" parent="instructions" unique_id=92851282]
 layout_mode = 0
 offset_left = 955.0
 offset_top = 590.0
@@ -566,7 +569,7 @@ offset_bottom = 613.0
 text = "spikes are bad :)"
 horizontal_alignment = 1
 
-[node name="Initial Instructions5" type="Label" parent="Control" unique_id=2044147581]
+[node name="Initial Instructions5" type="Label" parent="instructions" unique_id=2044147581]
 layout_mode = 0
 offset_left = 1238.0
 offset_top = 695.0
@@ -575,7 +578,7 @@ offset_bottom = 718.0
 text = "press j to attack"
 horizontal_alignment = 1
 
-[node name="Initial Instructions6" type="Label" parent="Control" unique_id=2137783995]
+[node name="Initial Instructions6" type="Label" parent="instructions" unique_id=2137783995]
 layout_mode = 0
 offset_left = 1693.0
 offset_top = 392.0
@@ -691,14 +694,19 @@ unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_hptm8")
 
 [node name="PAUSED" type="CanvasLayer" parent="." unique_id=1254224367]
+process_mode = 3
 
 [node name="Menu" parent="PAUSED" unique_id=1332078428 instance=ExtResource("10_hptm8")]
 unique_name_in_owner = true
-process_mode = 3
 offset_left = -576.0
 offset_top = -324.0
 offset_right = -576.0
 offset_bottom = -324.0
+
+[node name="Options" type="CanvasLayer" parent="PAUSED" unique_id=993974281]
+
+[node name="Options" parent="PAUSED/Options" unique_id=1776265203 instance=ExtResource("18_b3802")]
+unique_name_in_owner = true
 
 [node name="FADE_LAYER" type="CanvasLayer" parent="." unique_id=1418338205]
 unique_name_in_owner = true
@@ -715,13 +723,10 @@ color = Color(0.099985994, 0.099985994, 0.099985994, 1)
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_fevyy")
 
-[connection signal="pause_menu" from="." to="PAUSED/Menu" method="_on_main_pause_menu"]
-[connection signal="unpaused" from="." to="PAUSED/Menu" method="_on_main_unpaused"]
 [connection signal="player_exit_door" from="EXIT_DOOR/player_in" to="EXIT_DOOR/EXIT_DOOR_ANIM" method="_on_player_in_player_exit_door"]
 [connection signal="body_entered" from="BOSS_DOOR/PLAYER_entered" to="BOSS_DOOR/PLAYER_entered" method="_on_body_entered"]
 [connection signal="body_exited" from="BOSS_DOOR/PLAYER_entered" to="BOSS_DOOR/PLAYER_entered" method="_on_body_exited"]
 [connection signal="player_in_boss_area" from="BOSS_DOOR/PLAYER_entered" to="BOSS_DOOR/BOSS_DOOR_ANIM" method="_on_player_entered_player_in_boss_area"]
 [connection signal="boss_defeated" from="FIRE_DEMON" to="." method="_on_fire_demon_boss_defeated"]
 [connection signal="boss_defeated" from="FIRE_DEMON" to="EXIT_DOOR/EXIT_DOOR_ANIM" method="_on_fire_demon_boss_defeated"]
-[connection signal="died" from="PLAYER" to="." method="_on_player_died"]
-[connection signal="health_changed" from="PLAYER" to="Player UI" method="_on_player_health_changed"]
+[connection signal="closed" from="PAUSED/Options/Options" to="PAUSED/Menu" method="_on_options_closed"]

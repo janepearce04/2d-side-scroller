@@ -7,7 +7,14 @@
 shader = ExtResource("2_k0w1u")
 shader_parameter/lod = 1.5
 
+[sub_resource type="InputEventAction" id="InputEventAction_k0w1u"]
+action = &"restart"
+
+[sub_resource type="Shortcut" id="Shortcut_pdsj5"]
+events = [SubResource("InputEventAction_k0w1u")]
+
 [node name="Pause Menu" type="Control" unique_id=1332078428]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -22,6 +29,7 @@ script = ExtResource("2_1och7")
 
 [node name="PAUSEMENU" type="CanvasLayer" parent="." unique_id=1065720398]
 unique_name_in_owner = true
+process_mode = 3
 
 [node name="ColorRect" type="ColorRect" parent="PAUSEMENU" unique_id=1387305540]
 material = SubResource("ShaderMaterial_emv3i")
@@ -57,7 +65,12 @@ text = "Resume"
 [node name="Restart" type="Button" parent="PAUSEMENU/PanelContainer/VBoxContainer" unique_id=1848826763]
 process_mode = 3
 layout_mode = 2
+shortcut = SubResource("Shortcut_pdsj5")
 text = "Restart"
+
+[node name="Options" type="Button" parent="PAUSEMENU/PanelContainer/VBoxContainer" unique_id=2109097531]
+layout_mode = 2
+text = "Options"
 
 [node name="Quit" type="Button" parent="PAUSEMENU/PanelContainer/VBoxContainer" unique_id=508154103]
 process_mode = 3
@@ -66,4 +79,5 @@ text = "Quit"
 
 [connection signal="pressed" from="PAUSEMENU/PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PAUSEMENU/PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PAUSEMENU/PanelContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="PAUSEMENU/PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -1,7 +1,7 @@
 extends Node2D
 class_name level_1
 
-@onready var player: Player = %PLAYER
+@onready var player: player1 = %PLAYER
  
 @export var wall_drop_distance := 200.0
 var boss_started := false
@@ -10,6 +10,7 @@ func _ready() -> void:
 	get_tree().paused = false
 	Globals.playerAlive = true
 	Globals.game_state = Globals.GameState.LEVEL
+	Globals.gameStarted = true
 	%"GAME OVER".visible = false
 	%FADE_LAYER.visible = true
 	%PLAYER_entered.body_entered.connect(_on_boss_room_body_entered)
@@ -21,25 +22,9 @@ func _ready() -> void:
 	player.health_changed.connect(_on_health_changed)
 	_on_health_changed(player.player_hp)
 
-signal pause_menu
-signal unpaused
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart") and not %GO_AnimationPlayer.is_playing():
 		_restart()
-	if event.is_action_pressed('pause') and not get_tree().paused:
-		pause()
-	if event.is_action_pressed('pause') and get_tree().paused:
-		unpause()
-
-func pause():
-	get_tree().paused = true
-	pause_menu.emit()
-	
-
-func unpause():
-	get_tree().paused = false
-	unpaused.emit()
 
 func _on_health_changed(hp: float) -> void:
 	%Health.text = "Health: %d" % hp
@@ -64,7 +49,6 @@ func _on_player_died() -> void:
  
 func _restart() -> void:
 	%"GAME OVER".visible = false
-	unpause()
 	get_tree().reload_current_scene()
 
 func _on_fire_demon_boss_defeated() -> void:

@@ -14,6 +14,9 @@ func play_move():
 func play_attack():
 	play('attack')
 
+func play_dash():
+	play('dash')
+
 func flash_dash() -> void:
 	var tween1 = get_tree().create_tween()
 	tween1.tween_property(%Visuals, "modulate", Color.LIGHT_SKY_BLUE, 0.1)

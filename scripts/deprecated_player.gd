@@ -188,7 +188,6 @@ func _current_gravity() -> float:
 func _apply_gravity(delta: float, scale := 1.0) -> void:
 	velocity.y += _current_gravity() * scale * delta
 
-
 # ---------- DASH ----------
 func start_dash() -> void:
 	state = State.DASH

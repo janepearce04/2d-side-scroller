@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Player
+class_name player1
 
 signal health_changed(new_hp: float)
 
@@ -38,7 +38,7 @@ enum State { NORMAL, DASH, ATTACK, CHARGE, CAST, HURT, DEAD }
 
 @export_group("Dash")
 @export var DASH_SPEED := 375.0
-@export var DASH_DURATION := 0.2
+@export var DASH_DURATION := 0.3
 @export var DASH_COOLDOWN := 1.2
 @export var DASH_GRAVITY_SCALE := 0.15
 
@@ -201,6 +201,7 @@ func start_dash() -> void:
 	dash_cooldown_left = DASH_COOLDOWN
 	velocity.y = 0.0
 	%AnimationPlayer.flash_dash()
+	%AnimationPlayer.play_dash()
 
 func _dash_state(delta: float) -> void:
 	velocity.x = facing * DASH_SPEED

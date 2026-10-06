@@ -56,9 +56,9 @@ var _shuffle_dir := 1.0
 var _shuffle_cooldown_left := 0.0
 
 func _init() -> void:
-	max_hp = 100.0
-	chase_speed = 100.0
-	knockback_force = 0.0
+	max_hp = 50 + 50 * Globals.game_difficulty
+	chase_speed = 80.0 + 10 * Globals.game_difficulty
+	knockback_force = 4.0
 
 
 func _ready() -> void:

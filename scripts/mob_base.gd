@@ -4,12 +4,12 @@ class_name Mob
 ## _pick_roam_direction() and optionally _update_animation().
 
 @export_group("Stats")
-@export var max_hp := 10.0
-@export var contact_damage := 3.0   # the player reads this when touching the mob
+@export var max_hp := 5 + 5 * Globals.game_difficulty
+@export var contact_damage := 1.0 + 1.0 *Globals.game_difficulty # the player reads this when touching the mob
 
 @export_group("Movement")
-@export var roam_speed := 50.0
-@export var chase_speed := 70.0
+@export var roam_speed := 20.0 + 5 * Globals.game_difficulty
+@export var chase_speed := 50.0 + 10 * Globals.game_difficulty
 @export var acceleration := 200.0
 @export var affected_by_gravity := true
 
