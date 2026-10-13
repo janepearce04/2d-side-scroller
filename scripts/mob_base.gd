@@ -10,7 +10,7 @@ class_name Mob
 @export_group("Movement")
 @export var roam_speed := 20.0 + 5 * Globals.game_difficulty
 @export var chase_speed := 50.0 + 10 * Globals.game_difficulty
-@export var acceleration := 200.0
+@export var acceleration := 200.0 + 5 * Globals.game_difficulty
 @export var affected_by_gravity := true
 
 @export_group("Awareness")
@@ -18,11 +18,14 @@ class_name Mob
 
 @export_group("Knockback")
 @export var knockback_force := 200.0
-@export var knockback_time := 0.25
+@export var knockback_time := 0.3
 
 # Put your sprite (and anything that should flip) under a Node2D named
 # "Visuals" with "Access as Unique Name" on. Falls back to flipping the root.
 @onready var visuals: Node2D = get_node_or_null("%Visuals") as Node2D
+
+@export var soul_value := 1
+# in _die():   (boss: soul_value = 10 in _init)
 
 var hp := 0.0
 var dead := false
@@ -38,6 +41,7 @@ var _knockback_left := 0.0
 @export var art_faces_left := false   # untick for art that faces right
 
 signal health_changed
+signal mob_died(value: int)
 
 # facing is the sign applied to scale.x, not a world direction
 func _face(dir_x: float) -> void:
@@ -45,9 +49,11 @@ func _face(dir_x: float) -> void:
 
 func _ready() -> void:
 	hp = max_hp
+	%Health.max_value = max_hp
 	update_health()
 	add_to_group("mobs")
 	_pick_roam_direction()
+	# Level _ready (before the await)
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -108,7 +114,7 @@ func _update_facing() -> void:
 	if _knockback_left <= 0.0 and absf(velocity.x) > 10.0:
 		_face(velocity.x)
 	var flip: Node2D = visuals if visuals else self
-	flip.scale.x = facing
+	flip.scale.x = absf(flip.scale.x) * facing
 
 # ---------- ROAM TIMER ----------
 # Connected to your Timer's timeout signal (same name as before)
@@ -130,7 +136,7 @@ func take_damage(value: float, source_position := Vector2.INF) -> void:
 	update_health()
 
 	if hp <= 0.0:
-		_die()
+		_die(1)
 		return
 
 	_on_hurt()
@@ -167,7 +173,7 @@ func _on_hurt() -> void:
 func update_health() -> void:
 	%Health.value = hp
 
-func _die() -> void:
+func _die(soul_value) -> void:
 	if dead:
 		return
 	
@@ -180,4 +186,5 @@ func _die() -> void:
 	if %AnimationPlayer.has_method("play_death"):
 		%AnimationPlayer.play_death()
 		await get_tree().create_timer(%AnimationPlayer.current_animation_length).timeout
+	mob_died.emit(soul_value)
 	queue_free()

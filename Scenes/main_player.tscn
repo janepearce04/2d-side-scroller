@@ -92,70 +92,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n50qx"]
-atlas = ExtResource("5_eqo6h")
-region = Rect2(0, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0mljo"]
-atlas = ExtResource("5_eqo6h")
-region = Rect2(64, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rcw3n"]
-atlas = ExtResource("5_eqo6h")
-region = Rect2(128, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oyig7"]
-atlas = ExtResource("5_eqo6h")
-region = Rect2(192, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g1nmj"]
-atlas = ExtResource("5_eqo6h")
-region = Rect2(256, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8hnxh"]
-atlas = ExtResource("5_eqo6h")
-region = Rect2(320, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dbrdr"]
-atlas = ExtResource("5_eqo6h")
-region = Rect2(384, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kg1or"]
-atlas = ExtResource("5_eqo6h")
-region = Rect2(448, 256, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_t2dwb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n50qx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0mljo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rcw3n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oyig7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g1nmj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8hnxh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dbrdr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kg1or")
-}],
-"loop": 1,
-"name": &"flash",
-"speed": 12.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_suphp"]
 atlas = ExtResource("3_7dbct")
 region = Rect2(0, 0, 48, 48)
@@ -556,7 +492,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m2va7"]
-radius = 19.026299
+radius = 15.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akg5c"]
 atlas = ExtResource("7_ojsqe")
@@ -661,6 +597,70 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n50qx"]
+atlas = ExtResource("5_eqo6h")
+region = Rect2(0, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mljo"]
+atlas = ExtResource("5_eqo6h")
+region = Rect2(64, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcw3n"]
+atlas = ExtResource("5_eqo6h")
+region = Rect2(128, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyig7"]
+atlas = ExtResource("5_eqo6h")
+region = Rect2(192, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1nmj"]
+atlas = ExtResource("5_eqo6h")
+region = Rect2(256, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hnxh"]
+atlas = ExtResource("5_eqo6h")
+region = Rect2(320, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbrdr"]
+atlas = ExtResource("5_eqo6h")
+region = Rect2(384, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kg1or"]
+atlas = ExtResource("5_eqo6h")
+region = Rect2(448, 256, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t2dwb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n50qx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mljo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcw3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyig7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1nmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hnxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbrdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kg1or")
+}],
+"loop": 1,
+"name": &"flash",
 "speed": 12.0
 }]
 
@@ -801,7 +801,7 @@ tracks/10/keys = {
 
 [sub_resource type="Animation" id="Animation_elv78"]
 resource_name = "attack"
-length = 0.93333334
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -809,7 +809,7 @@ tracks/0/path = NodePath("Visuals/AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.3, 0.39333335, 0.48666668, 0.58, 0.67333335, 0.7666667),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333334, 0.22666666, 0.32000002, 0.4, 0.46666667, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -833,7 +833,7 @@ tracks/2/path = NodePath("Visuals/AnimatedSprite2D/AttackHitbox/CollisionShape2D
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.29333335, 0.59333336),
+"times": PackedFloat32Array(0, 0.16666667, 0.43333334),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -845,7 +845,7 @@ tracks/3/path = NodePath("Visuals/AttackFlash:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.26666668, 0.6),
+"times": PackedFloat32Array(0.13333334, 0.46666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 8]
@@ -857,7 +857,7 @@ tracks/4/path = NodePath("Visuals/AttackFlash:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.26666668, 0.6666667),
+"times": PackedFloat32Array(0.2, 0.48266667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -989,6 +989,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_eadif"]
 resource_name = "death"
+length = 1.6666666
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -996,10 +997,10 @@ tracks/0/path = NodePath("Visuals/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.46666667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"death"]
+"values": [&"charge", &"death"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1008,10 +1009,10 @@ tracks/1/path = NodePath("Visuals/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.9),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.33333334, 0.46666667, 1.3666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0, 9]
+"values": [0, 5, 0, 9]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1020,7 +1021,7 @@ tracks/2/path = NodePath("Visuals:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.96666664),
+"times": PackedFloat32Array(0.46666667, 1.4333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -1165,15 +1166,6 @@ position = Vector2(0, -19)
 sprite_frames = SubResource("SpriteFrames_pd43a")
 animation = &"dash"
 
-[node name="AttackFlash" type="AnimatedSprite2D" parent="Visuals" unique_id=1859234739]
-visible = false
-modulate = Color(1, 0.9529412, 0.48235294, 1)
-position = Vector2(15, -5)
-rotation = -0.7853982
-scale = Vector2(1.4, 1.4)
-sprite_frames = SubResource("SpriteFrames_t2dwb")
-animation = &"flash"
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=713225622]
 position = Vector2(0, -20)
 sprite_frames = SubResource("SpriteFrames_kbt1y")
@@ -1185,7 +1177,7 @@ collision_layer = 14
 collision_mask = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/AnimatedSprite2D/AttackHitbox" unique_id=1993475811]
-position = Vector2(15, 4)
+position = Vector2(15, 6)
 shape = SubResource("CircleShape2D_m2va7")
 disabled = true
 
@@ -1196,6 +1188,16 @@ position = Vector2(7, -15)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals/FireballSpawn" unique_id=2058343574]
 visible = false
 sprite_frames = SubResource("SpriteFrames_m2va7")
+
+[node name="AttackFlash" type="AnimatedSprite2D" parent="Visuals" unique_id=1859234739]
+visible = false
+modulate = Color(2.0043314, 2.0437815, 1.678358, 1)
+z_index = 1
+position = Vector2(15, -5)
+rotation = -0.7853982
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_t2dwb")
+animation = &"flash"
 
 [node name="LedgeCheck" type="RayCast2D" parent="Visuals" unique_id=2103267095]
 unique_name_in_owner = true

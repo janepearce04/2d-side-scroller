@@ -5,32 +5,46 @@ extends Area2D
 @export var lifetime := 2.0
 
 var direction := 1
+var _spent := false
 
 func _ready() -> void:
-	handle_animation()
+	%AnimationPlayer.play("fire")
 	scale.x = direction
 	area_entered.connect(_on_area_entered)
 	body_entered.connect(_on_body_entered)
 	get_tree().create_timer(lifetime).timeout.connect(queue_free)
 
 func _physics_process(delta: float) -> void:
+	if _spent:
+		return
 	position.x += direction * speed * delta
 
-func handle_animation():
-	%AnimationPlayer.play('fire')
-
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("hurtbox"):
-		var target = area.get_parent()
-		if target.is_in_group("mobs") and target.has_method("take_damage"):
-			print('target hit!')
-			target.take_damage(damage)
-			%AnimationPlayer.play('explode')
-			await %AnimationPlayer.animation_finished
-			queue_free()
+	print("fireball touched: ", area.get_path(), " ", area.get_groups())
+	if _spent or not area.is_in_group("hurtbox"):
+		return
+	var target = _find_damageable(area)
+	if target == null or target.is_in_group("player"):
+		return
+	target.take_damage(damage)
+	_explode()
 
 func _on_body_entered(body: Node2D) -> void:
-	if not body.is_in_group("player"):
-		%AnimationPlayer.play('explode')
-		await %AnimationPlayer.animation_finished
-		queue_free()  # hit a wall or floor
+	if _spent or body.is_in_group("player"):
+		return
+	var target = _find_damageable(body)
+	if target != null:
+		target.take_damage(damage)
+	_explode()
+
+func _find_damageable(node: Node) -> Node:
+	while node != null and not node.has_method("take_damage"):
+		node = node.get_parent()
+	return node
+
+func _explode() -> void:
+	_spent = true
+	set_deferred("monitoring", false)
+	%AnimationPlayer.play("explode")
+	await %AnimationPlayer.animation_finished
+	queue_free()

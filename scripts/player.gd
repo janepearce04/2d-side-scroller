@@ -2,29 +2,34 @@ extends CharacterBody2D
 class_name player1
 
 signal health_changed(new_hp: float)
+signal souls_total_changed(souls: float)
+signal souls_level_changed(souls: int)
+signal player_died
 
 enum State { NORMAL, DASH, ATTACK, CHARGE, CAST, HURT, DEAD }
 
+var mob_script: Script = preload("res://scripts/mob_base.gd")
+
 @export_group("Health")
-@export var max_hp := 65.0
-@export var player_hp := 65.0
-@export var contact_damage_default := 5.0   # used if the enemy has no `contact_damage` property
-@export var spike_damage := 5.0
-@export var invulnerable_time := 0.6        # i-frames after being hit
-@export var hurt_stun_time := 0.0           # control lost after being hit
-@export var knockback := Vector2(200.0, -50.0)
+@export var max_hp := 80 - 5 * Globals.game_difficulty
+@export var player_hp := 80 - 5 * Globals.game_difficulty
+@export var contact_damage_default := 1 + 1 * Globals.game_difficulty
+@export var spike_damage := 2.0 + Globals.game_difficulty
+@export var invulnerable_time := 1.2 - 0.2 * Globals.game_difficulty        # i-frames after being hit
+@export var hurt_stun_time := 0.3 - 0.05 * Globals.game_difficulty           # control lost after being hit
+@export var knockback := Vector2(200.0, -150.0)
 
 @export_group("Movement")
-@export var max_speed := 200.0
+@export var max_speed := 150.0 + 80 * Globals.game_difficulty
 @export var acceleration := 1600.0
-@export var deceleration := 2200.0
+@export var deceleration := 2400.0
 @export var jump_acceleration := 900.0
-@export var jump_deceleration := 1200.0
+@export var jump_deceleration := 1800.0
 @export var fall_acceleration := 1400.0
-@export var fall_deceleration := 1800.0
+@export var fall_deceleration := 1900.0
 
 @export_group("Jump")
-@export var jump_velocity := -400.0
+@export var jump_velocity := -460.0 + Globals.game_difficulty * (max_speed / 200)
 @export var boost_jump_velocity := -725.0   # used while standing on a launchpad
 @export_range(0.0, 1.0) var jump_cut_multiplier := 0.5
 @export var coyote_time := 0.1
@@ -43,9 +48,9 @@ enum State { NORMAL, DASH, ATTACK, CHARGE, CAST, HURT, DEAD }
 @export var DASH_GRAVITY_SCALE := 0.15
 
 @export_group("Scythe")
-@export var attack_damage := 8.0
-@export var ATTACK_DURATION := 0.93
-@export var ATTACK_FRICTION := 250.0
+@export var attack_damage := 9.0
+@export var ATTACK_DURATION := 0.65
+@export var ATTACK_FRICTION := 120.0
 @export var ATTACK_GRAVITY_SCALE := 0.15
 @export var ATTACK_VERTICAL_DAMP := 0.2
 
@@ -63,6 +68,7 @@ enum State { NORMAL, DASH, ATTACK, CHARGE, CAST, HURT, DEAD }
 @onready var spikes: TileMapLayer = %spikes
 @onready var attack_hitbox: Area2D = get_node_or_null("%AttackHitbox")      # rename to match your node
 @onready var charge_effect: CanvasItem = get_node_or_null("%ChargeEffect")  # rename to your fireball glow node
+@onready var level_1_boss = get_node_or_null("FIRE DEMON")
 
 var state := State.NORMAL
 var state_time := 0.0
@@ -70,6 +76,9 @@ var direction := 0.0
 var facing := 1
 var boosted := false
 var dead := false
+
+var total_souls := 0.0
+var level_souls := 0
 
 var can_dash := true
 var dash_cooldown_left := 0.0
@@ -87,7 +96,9 @@ var _last_safe_position := Vector2.ZERO
 
 func _ready() -> void:
 	add_to_group("player")
+	total_souls = Globals.total_player_souls
 	dead = false
+	player_hp = max_hp
 	_base_scale = Vector2(absf(visuals.scale.x), visuals.scale.y)
 	_last_safe_position = global_position
 
@@ -133,8 +144,7 @@ func _physics_process(delta: float) -> void:
 	_update_animation()
 	_update_visuals(delta)
 	move_and_slide()
-
-
+	
 # ---------- NORMAL ----------
 func _normal_state(delta: float) -> void:
 	_movement(delta)
@@ -197,11 +207,11 @@ func _apply_gravity(delta: float, gravity_scale := 1.0) -> void:
 func start_dash() -> void:
 	state = State.DASH
 	can_dash = false
+	%AnimationPlayer.flash_dash()
+	%AnimationPlayer.play_dash()
 	state_time = DASH_DURATION
 	dash_cooldown_left = DASH_COOLDOWN
 	velocity.y = 0.0
-	%AnimationPlayer.flash_dash()
-	%AnimationPlayer.play_dash()
 
 func _dash_state(delta: float) -> void:
 	velocity.x = facing * DASH_SPEED
@@ -222,7 +232,7 @@ func start_attack() -> void:
 	%AnimationPlayer.play("attack")
 
 func _attack_state(delta: float) -> void:
-	velocity.x = move_toward(velocity.x, 0.0, ATTACK_FRICTION * delta)
+	velocity.x = move_toward(velocity.x, (velocity.x/80), ATTACK_FRICTION * delta)
 	_apply_gravity(delta, ATTACK_GRAVITY_SCALE)
 	_poll_attack_hits()
 	state_time -= delta
@@ -243,7 +253,7 @@ func _on_attack_hitbox_area_entered(area: Area2D) -> void:
 		_try_hit(area)
 
 func _try_hit(area: Area2D) -> void:
-	print(area.get_path(), " ", area.get_groups())
+	#print(area.get_path(), " ", area.get_groups())
 	if not area.is_in_group("hurtbox"):
 		return
 	var target = _find_damageable(area)
@@ -271,7 +281,7 @@ func start_charge() -> void:
 	state = State.CHARGE
 	state_time = 0.0
 	%AnimationPlayer.flash_charge()
-	%AnimationPlayer.play("charge")
+	%AnimationPlayer.play("charge", -1, (1.2 - (0.2 * Globals.game_difficulty)))
 
 func _charge_state(delta: float) -> void:
 	state_time += delta
@@ -323,6 +333,13 @@ func _end_fireball_visuals() -> void:
 		%AnimationPlayer.flash_fire()
 		%AnimationPlayer.advance(0.0)
 
+# Player souils
+func add_souls(amount: int) -> void:
+	total_souls += amount
+	level_souls += amount
+	Globals.total_player_souls = total_souls
+	souls_total_changed.emit(total_souls)
+	souls_level_changed.emit(level_souls)
 
 # ---------- HURT / HITS ----------
 func _hurt_state(delta: float) -> void:
@@ -336,20 +353,39 @@ func _hurt_state(delta: float) -> void:
 func _check_contact_damage() -> void:
 	if invulnerable_left > 0.0 or state == State.DEAD:
 		return
+
+	# Attack hitboxes (Area2Ds). Checked first so a lunge's damage beats plain contact.
+	for area in %HURTBOX.get_overlapping_areas():
+		if not area.is_in_group("enemy_hitbox"):
+			#print("not an enemy hitbox")
+			continue
+		var attacker = _find_damageable(area)
+		if attacker == null or attacker == self:
+			#print("attacker null or self")
+			continue
+		knockback = Vector2(500.0, -200.0)
+		var dmg = attacker.get_hitbox_damage() if attacker.has_method("get_hitbox_damage") else attacker.get("contact_damage")
+		take_damage(dmg if dmg != null else contact_damage_default, attacker.global_position)
+		print(dmg, " damage to player")
+		return
+
+	# Body contact (unchanged)
 	for body in %HURTBOX.get_overlapping_bodies():
 		if body.is_in_group("mobs"):
-			var dmg = body.get("contact_damage")  # null if the enemy doesn't define it
+			var dmg = body.get("contact_damage")
 			take_damage(dmg if dmg != null else contact_damage_default, body.global_position)
 			return
 
-
-func take_damage(damage: float, source_position := Vector2.INF) -> void:
+func take_damage(damage: float, source_position := Vector2.INF, kb := Vector2.INF) -> void:
+	if kb == Vector2.INF:
+		kb = knockback
+	
 	if state == State.DEAD or damage <= 0.0 or invulnerable_left > 0.0:
 		return
 
 	player_hp = max(player_hp - damage, 0.0)
 	health_changed.emit(player_hp)
-
+	
 	if player_hp <= 0.0:
 		handle_death()
 		return
@@ -368,6 +404,8 @@ func take_damage(damage: float, source_position := Vector2.INF) -> void:
 		if not is_zero_approx(away):
 			push = signf(away)
 	velocity = Vector2(push * knockback.x, knockback.y)
+	await %AnimationPlayer.animation_finished
+	knockback = Vector2(200.0, -150.0)
 
 # ---------- SPIKES ----------
 func _update_safe_position() -> void:
@@ -401,6 +439,7 @@ func handle_death() -> void:
 	if state == State.DEAD:
 		return
 	state = State.DEAD   # must be first
+	player_died.emit()
 	dead = true
 	_end_fireball_visuals()
 	velocity.x = 0.0
@@ -413,7 +452,7 @@ func handle_death() -> void:
 # ---------- ANIMATION / VISUALS ----------
 func _update_animation() -> void:
 	match state:
-		State.ATTACK, State.DASH, State.CHARGE, State.CAST, State.HURT:
+		State.ATTACK, State.DASH, State.CHARGE, State.CAST, State.HURT, State.DEAD:
 			pass   # these states start their own animation once
 		_:
 			if is_on_floor() and not is_zero_approx(velocity.x):

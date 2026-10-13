@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://xq2rwpix4wsi"]
 
 [ext_resource type="Script" uid="uid://c3ikdv57ifisx" path="res://scripts/pause_menu.gd" id="2_1och7"]
-[ext_resource type="Shader" uid="uid://dfd5gesyhhles" path="res://fx/BLUR.gdshader" id="2_k0w1u"]
+[ext_resource type="Shader" uid="uid://dfd5gesyhhles" path="res://other_ui/BLUR.gdshader" id="2_k0w1u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_emv3i"]
 shader = ExtResource("2_k0w1u")
@@ -25,11 +25,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 script = ExtResource("2_1och7")
 
 [node name="PAUSEMENU" type="CanvasLayer" parent="." unique_id=1065720398]
 unique_name_in_owner = true
-process_mode = 3
 
 [node name="ColorRect" type="ColorRect" parent="PAUSEMENU" unique_id=1387305540]
 material = SubResource("ShaderMaterial_emv3i")
@@ -37,6 +37,8 @@ offset_left = -4.0
 offset_top = -2.0
 offset_right = 1157.0
 offset_bottom = 654.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="PAUSEMENU" unique_id=1915486603]
 anchors_preset = 8
@@ -52,10 +54,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+offset_transform_enabled = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PAUSEMENU/PanelContainer" unique_id=1256611603]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Resume" type="Button" parent="PAUSEMENU/PanelContainer/VBoxContainer" unique_id=874577209]
 process_mode = 3
@@ -69,8 +73,14 @@ shortcut = SubResource("Shortcut_pdsj5")
 text = "Restart"
 
 [node name="Options" type="Button" parent="PAUSEMENU/PanelContainer/VBoxContainer" unique_id=2109097531]
+process_mode = 3
 layout_mode = 2
 text = "Options"
+
+[node name="Main Menu" type="Button" parent="PAUSEMENU/PanelContainer/VBoxContainer" unique_id=780759081]
+process_mode = 3
+layout_mode = 2
+text = "Main Menu"
 
 [node name="Quit" type="Button" parent="PAUSEMENU/PanelContainer/VBoxContainer" unique_id=508154103]
 process_mode = 3
@@ -80,4 +90,5 @@ text = "Quit"
 [connection signal="pressed" from="PAUSEMENU/PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PAUSEMENU/PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PAUSEMENU/PanelContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="PAUSEMENU/PanelContainer/VBoxContainer/Main Menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="PAUSEMENU/PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

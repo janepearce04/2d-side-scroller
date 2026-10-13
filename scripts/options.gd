@@ -44,4 +44,9 @@ func _on_difficulty_pressed(button: BaseButton) -> void:
 	Globals.set_difficulty(difficulty_buttons.find_key(button))
 
 func _on_back_pressed() -> void:
-	close()
+	if get_tree().paused == true:
+		close()
+		get_tree().paused = false
+	else:
+		close()
+	pass

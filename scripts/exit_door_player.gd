@@ -5,6 +5,7 @@ signal player_exit_door
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and %PLAYER.player_hp >= 0:
 		player_exit_door.emit()
+		%EXIT_DOOR_ANIM.play("exit door")
 		print("player in exit door")
 
 func _on_body_exited(body: Node2D) -> void:

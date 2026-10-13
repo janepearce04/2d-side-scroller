@@ -16,8 +16,11 @@
 [ext_resource type="Script" uid="uid://c1ccisxqkhnqs" path="res://scripts/exit_door_player.gd" id="7_h1bgf"]
 [ext_resource type="PackedScene" uid="uid://dcs2l6j8gwxja" path="res://Scenes/crawler.tscn" id="8_344ge"]
 [ext_resource type="PackedScene" uid="uid://xq2rwpix4wsi" path="res://Scenes/pause_menu.tscn" id="10_hptm8"]
+[ext_resource type="Script" uid="uid://bxgwspk7ul3ml" path="res://scripts/flier.gd" id="12_pdsj5"]
 [ext_resource type="PackedScene" uid="uid://dishya3i1qmbu" path="res://Scenes/main_player.tscn" id="14_1w6v2"]
+[ext_resource type="StyleBox" uid="uid://bt0g155ltqeol" path="res://theme/background_style_box_flat.tres" id="17_hibaj"]
 [ext_resource type="PackedScene" uid="uid://csimeewevvlnm" path="res://Scenes/Options.tscn" id="18_b3802"]
+[ext_resource type="StyleBox" uid="uid://cv2fsp0jlryyo" path="res://theme/fill_style_box_flat.tres" id="18_pdsj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gbba"]
 size = Vector2(10579, 66.5)
@@ -197,11 +200,16 @@ _data = {
 size = Vector2(587, 405)
 
 [sub_resource type="LabelSettings" id="LabelSettings_21xkr"]
-font_size = 20
+font_size = 12
 outline_size = 2
 outline_color = Color(0.45247537, 0.058228176, 0.056341823, 1)
 shadow_size = 2
 shadow_offset = Vector2(1, -4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m2va7"]
+font_size = 8
+font_color = Color(0.42352942, 0.043137256, 0.23529412, 1)
+outline_size = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_t2dwb"]
 font_size = 80
@@ -220,7 +228,6 @@ unicode = 114
 events = [SubResource("InputEventKey_ynf5e")]
 
 [sub_resource type="Animation" id="Animation_hptm8"]
-length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -228,10 +235,10 @@ tracks/0/path = NodePath("Panel/ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -240,10 +247,10 @@ tracks/1/path = NodePath("Panel/VBoxContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ynf5e"]
@@ -351,12 +358,14 @@ position = Vector2(8251, -453)
 shape = SubResource("RectangleShape2D_t2dwb")
 
 [node name="Background" parent="." unique_id=922490698 instance=ExtResource("3_8gbba")]
+z_index = -1
+z_as_relative = false
 position = Vector2(-2.6, -6)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1738063482]
 modulate = Color(0.8757663, 0.89676315, 0.83914876, 1)
 z_index = 1
-y_sort_enabled = true
+z_as_relative = false
 tile_set = ExtResource("3_344ge")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="TileMapLayer" unique_id=1875664381]
@@ -376,8 +385,7 @@ tile_set = ExtResource("3_344ge")
 
 [node name="spikes" type="TileMapLayer" parent="TileMapLayer" unique_id=204966830]
 unique_name_in_owner = true
-z_index = -1
-y_sort_enabled = true
+z_index = -2
 tile_map_data = PackedByteArray("AACRAB8AAAAEAAMAAACQAB8AAAAEAAMAAACSAB8AAAAEAAMAAABlADIAAAAFAAAAAABmADIAAAADAAAAAABnADIAAAAEAAAAAABoADIAAAAEAAAAAABpADIAAAAFAAAAAABqADIAAAAFAAAAAABrADIAAAADAAAAAABsADIAAAAEAAEAAABtADIAAAAFAAAAAABuADIAAAAEAAAAAABvADIAAAAFAAAAAABwADIAAAAEAAAAAABxADIAAAADAAAAAAByADIAAAADAAAAAABzADIAAAAEAAAAAAB0ADIAAAAFAAAAAAB1ADIAAAADAAAAAAB2ADIAAAAFAAAAABB3ADIAAAAEAAAAABB4ADIAAAADAAAAABB5ADIAAAAFAAAAABB6ADIAAAAEAAAAABB7ADIAAAADAAAAABB8ADIAAAAFAAAAABB9ADIAAAAEAAAAABB+ADIAAAADAAAAABB/ADIAAAAFAAAAABCAADIAAAAEAAAAABCBADIAAAADAAAAABCCADIAAAAFAAAAABCDADIAAAAFAAAAABCEADIAAAAEAAAAABCFADIAAAADAAAAABCGADIAAAAFAAAAAACHADIAAAAFAAAAABCIADIAAAAEAAAAABCJADIAAAADAAAAABCMADIAAAADAAAAABCLADIAAAAEAAAAABCKADIAAAAFAAAAABCPADIAAAAFAAAAABCOADIAAAAEAAAAABCNADIAAAAFAAAAABCRADIAAAAFAAAAABCQADIAAAAEAAAAABCTADIAAAADAAAAABCSADIAAAAEAAAAABCWADIAAAADAAAAABCVADIAAAAEAAAAABCUADIAAAAFAAAAABCZADIAAAADAAAAABCYADIAAAAEAAAAABCXADIAAAAFAAAAABCcADIAAAAFAAAAABCbADIAAAAEAAAAABCaADIAAAAFAAAAABCeADIAAAADAAAAABCdADIAAAAEAAAAABChADIAAAADAAAAABCgADIAAAAEAAAAABCfADIAAAAFAAAAABCkADIAAAADAAAAABCjADIAAAAEAAAAABCiADIAAAAFAAAAABCnADIAAAADAAAAABCmADIAAAAEAAAAABClADIAAAAFAAAAABCqADIAAAADAAAAABCpADIAAAAEAAAAABCoADIAAAAFAAAAABCtADIAAAADAAAAABCsADIAAAAEAAAAABCrADIAAAAFAAAAABCwADIAAAADAAAAABCvADIAAAAEAAAAABCuADIAAAAFAAAAABCzADIAAAADAAAAABCyADIAAAAEAAAAABCxADIAAAAFAAAAABC5ACAAAAADAAAABwC6ACAAAAADAAAABwC7ACAAAAADAAAABwC8ACAAAAADAAAABwC9ACAAAAADAAAABwC+ACAAAAADAAAABwC/ACAAAAADAAAABwA/ADIAAAADAAAAAABAADIAAAAEAAEAAABBADIAAAAFAAAAAABCADIAAAAEAAEAAABEADIAAAAEAAEAAABGADIAAAAEAAEAAABJADIAAAAEAAEAAABFADIAAAAEAAEAAABHADIAAAAFAAAAAABIADIAAAADAAAAAABDADIAAAADAAAAAAC0ADIAAAAFAAAAAAC1ADIAAAADAAAAAAC2ADIAAAAEAAAAAAC3ADIAAAAEAAAAAAC4ADIAAAAFAAAAAAC5ADIAAAAFAAAAAAC6ADIAAAADAAAAAAC7ADIAAAAEAAEAAAC8ADIAAAAFAAAAAAC9ADIAAAAEAAAAAAC+ADIAAAAFAAAAAAC/ADIAAAAEAAAAAADAADIAAAADAAAAAADBADIAAAADAAAAAADCADIAAAAEAAAAAADDADIAAAAFAAAAAADEADIAAAADAAAAAADFADIAAAAFAAAAABDGADIAAAAEAAAAABDHADIAAAADAAAAABDIADIAAAAFAAAAABDJADIAAAAEAAAAABDKADIAAAADAAAAABDLADIAAAAFAAAAABDMADIAAAAEAAAAABDNADIAAAADAAAAABDOADIAAAAFAAAAABDPADIAAAAEAAAAABDQADIAAAADAAAAABDRADIAAAAFAAAAABDSADIAAAAFAAAAABDTADIAAAAEAAAAABDUADIAAAADAAAAABDVADIAAAAFAAAAAADWADIAAAAFAAAAABDXADIAAAAEAAAAABDYADIAAAADAAAAABDZADIAAAAFAAAAABDaADIAAAAEAAAAABDbADIAAAADAAAAABDcADIAAAAFAAAAABDdADIAAAAEAAAAABDeADIAAAAFAAAAABDfADIAAAAEAAAAABDgADIAAAAFAAAAABDhADIAAAAEAAAAABDiADIAAAADAAAAABDjADIAAAAFAAAAABDkADIAAAAEAAAAABDlADIAAAADAAAAABDmADIAAAAFAAAAABDnADIAAAAEAAAAABDoADIAAAADAAAAABDpADIAAAAFAAAAABDqADIAAAAEAAAAABDrADIAAAAFAAAAABDsADIAAAAEAAAAABDtADIAAAADAAAAABDuADIAAAAFAAAAABDvADIAAAAEAAAAABDwADIAAAADAAAAABDxADIAAAAFAAAAABDyADIAAAAEAAAAABDzADIAAAADAAAAABD0ADIAAAAFAAAAABD1ADIAAAAEAAAAABD2ADIAAAADAAAAABD3ADIAAAAFAAAAABD4ADIAAAAEAAAAABD5ADIAAAADAAAAABD6ADIAAAAFAAAAABD7ADIAAAAEAAAAABD8ADIAAAADAAAAABD9ADIAAAAFAAAAABD+ADIAAAAEAAAAABD/ADIAAAADAAAAABAAATIAAAAFAAAAABABATIAAAAEAAAAABACATIAAAADAAAAABADATIAAAAFAAAAAAAEATIAAAADAAAAAAAFATIAAAAEAAAAAAAGATIAAAAEAAAAAAAHATIAAAAFAAAAAAAIATIAAAAFAAAAAAAJATIAAAADAAAAAAAKATIAAAAEAAEAAAALATIAAAAFAAAAAAAMATIAAAAEAAAAAAANATIAAAAFAAAAAAAOATIAAAAEAAAAAAAPATIAAAADAAAAAAAQATIAAAADAAAAAAARATIAAAAEAAAAAAASATIAAAAFAAAAAAATATIAAAADAAAAAAAUATIAAAAFAAAAABAVATIAAAAEAAAAABAWATIAAAADAAAAABAXATIAAAAFAAAAABAYATIAAAAEAAAAABAZATIAAAADAAAAABAaATIAAAAFAAAAABAbATIAAAAEAAAAABAcATIAAAADAAAAABAdATIAAAAFAAAAABAeATIAAAAEAAAAABAfATIAAAADAAAAABAgATIAAAAFAAAAABAhATIAAAAFAAAAABAiATIAAAAEAAAAABAjATIAAAADAAAAABAkATIAAAAFAAAAAAAlATIAAAAFAAAAABAmATIAAAAEAAAAABAnATIAAAADAAAAABAoATIAAAAFAAAAABApATIAAAAEAAAAABAqATIAAAADAAAAABArATIAAAAFAAAAABAsATIAAAAEAAAAABAtATIAAAAFAAAAABAuATIAAAAEAAAAABAvATIAAAAFAAAAABAwATIAAAAEAAAAABAxATIAAAADAAAAABAyATIAAAAFAAAAABAzATIAAAAEAAAAABA0ATIAAAADAAAAABA1ATIAAAAFAAAAABA2ATIAAAAEAAAAABA3ATIAAAADAAAAABA4ATIAAAAFAAAAABA5ATIAAAAEAAAAABA6ATIAAAAFAAAAABA7ATIAAAAEAAAAABA8ATIAAAADAAAAABA9ATIAAAAFAAAAABA+ATIAAAAEAAAAABA/ATIAAAADAAAAABBAATIAAAAFAAAAABBBATIAAAAEAAAAABBCATIAAAADAAAAABBDATIAAAAFAAAAABBEATIAAAAEAAAAABBFATIAAAADAAAAABBGATIAAAAFAAAAABBHATIAAAAEAAAAABBIATIAAAADAAAAABBJATIAAAAFAAAAABBKATIAAAAEAAAAABBLATIAAAADAAAAABBMATIAAAAFAAAAABBNATIAAAAEAAAAABBOATIAAAADAAAAABBPATIAAAAFAAAAABBQATIAAAAEAAAAABBRATIAAAADAAAAABBSATIAAAAFAAAAAABTATIAAAADAAAAAABUATIAAAAEAAAAAABVATIAAAAEAAAAAABWATIAAAAFAAAAAABXATIAAAAFAAAAAABYATIAAAADAAAAAABZATIAAAAEAAEAAABaATIAAAAFAAAAAABbATIAAAAEAAAAAABcATIAAAAFAAAAAABdATIAAAAEAAAAAABeATIAAAADAAAAAABfATIAAAADAAAAAABgATIAAAAEAAAAAABhATIAAAAFAAAAAABiATIAAAADAAAAAABjATIAAAAFAAAAABBkATIAAAAEAAAAABBlATIAAAADAAAAABBmATIAAAAFAAAAABBnATIAAAAEAAAAABBoATIAAAADAAAAABBpATIAAAAFAAAAABBqATIAAAAEAAAAABBrATIAAAADAAAAABBsATIAAAAFAAAAABBtATIAAAAEAAAAABBuATIAAAADAAAAABBvATIAAAAFAAAAABBwATIAAAAFAAAAABBxATIAAAAEAAAAABByATIAAAADAAAAABBzATIAAAAFAAAAAAB0ATIAAAAFAAAAABB1ATIAAAAEAAAAABB2ATIAAAAFAAAAAAB3ATIAAAAEAAAAAAB4ATIAAAADAAAAAAB5ATIAAAADAAAAAAB6ATIAAAAEAAAAAAB7ATIAAAAFAAAAAAB8ATIAAAADAAAAAAB9ATIAAAAFAAAAABB+ATIAAAAEAAAAABB/ATIAAAADAAAAABCAATIAAAAFAAAAABCBATIAAAAEAAAAABCCATIAAAADAAAAABCDATIAAAAFAAAAABCEATIAAAAEAAAAABCFATIAAAADAAAAABCGATIAAAAFAAAAABCHATIAAAAEAAAAABCIATIAAAADAAAAABCJATIAAAAFAAAAABCKATIAAAAFAAAAABCLATIAAAAEAAAAABCMATIAAAADAAAAABCNATIAAAAFAAAAAACOATIAAAAFAAAAABCPATIAAAAEAAAAABDiACAAAAAEAAMAAADjACAAAAAEAAMAAADkACAAAAAEAAMAAADlACAAAAAEAAMAAADmACAAAAAEAAMAAADnACAAAAAEAAMAAADoACAAAAAEAAMAAADwABgAAAADAAAABwDxABgAAAADAAAABwDyABgAAAADAAAABwDzABgAAAADAAAABwAxARsAAAADAAAABwAyARsAAAADAAAABwAzARsAAAADAAAABwA0ARsAAAADAAAABwA1ARsAAAADAAAABwA2ARsAAAADAAAABwA3ARsAAAADAAAABwA4ARsAAAADAAAABwA5ARsAAAADAAAABwA6ARsAAAADAAAABwA7ARsAAAADAAAABwA8ARsAAAADAAAABwA9ARsAAAADAAAABwA+ARsAAAADAAAABwCQATIAAAADAAAAABCRATIAAAAFAAAAAACSATIAAAAFAAAAABCTATIAAAAEAAAAABCUATIAAAAFAAAAAACVATIAAAAEAAAAAACWATIAAAADAAAAAACXATIAAAADAAAAAACYATIAAAAEAAAAAACZATIAAAAFAAAAAACaATIAAAADAAAAAACbATIAAAAFAAAAABCcATIAAAAEAAAAABCdATIAAAADAAAAABA=")
 tile_set = SubResource("TileSet_344ge")
 script = ExtResource("5_wsu2k")
@@ -406,7 +414,7 @@ script = ExtResource("5_jkdf5")
 [node name="BOSS_DOOR" type="AnimatedSprite2D" parent="." unique_id=189231934]
 z_index = -101
 y_sort_enabled = true
-position = Vector2(7729, 776)
+position = Vector2(7498, 778)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_t2dwb")
 frame = 5
@@ -418,7 +426,7 @@ collision_mask = 11
 script = ExtResource("5_fdnlq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BOSS_DOOR/PLAYER_entered" unique_id=1480561844]
-position = Vector2(-32.5, -183.5)
+position = Vector2(89.5, -188)
 shape = SubResource("RectangleShape2D_d1ilt")
 
 [node name="BOSS_DOOR_ANIM" type="AnimationPlayer" parent="BOSS_DOOR" unique_id=715113844]
@@ -436,6 +444,7 @@ position = Vector2(873, 789)
 position = Vector2(4032, 781)
 
 [node name="MOBS" type="Node2D" parent="." unique_id=1525112933]
+script = ExtResource("12_pdsj5")
 
 [node name="MOB" parent="MOBS" unique_id=83613693 instance=ExtResource("5_kry3j")]
 position = Vector2(1272, 736)
@@ -485,16 +494,13 @@ position = Vector2(5448, 35)
 [node name="MOB15" parent="MOBS" unique_id=2067648344 instance=ExtResource("5_kry3j")]
 position = Vector2(5947, 116)
 
-[node name="MOB17" parent="MOBS" unique_id=1866744376 instance=ExtResource("5_kry3j")]
-position = Vector2(10504, 752)
-
 [node name="FIRE_DEMON" parent="." unique_id=1014972430 instance=ExtResource("6_k12tt")]
 unique_name_in_owner = true
-position = Vector2(7721, 810)
+position = Vector2(7565, 814)
 
 [node name="PLAYER" parent="." unique_id=1777336445 instance=ExtResource("14_1w6v2")]
 unique_name_in_owner = true
-position = Vector2(71, 703)
+position = Vector2(103, 746)
 jump_cut_multiplier = 0.249
 gravity = 800.0
 fall_gravity = 1200.0
@@ -608,25 +614,55 @@ horizontal_alignment = 1
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 134.0
-offset_bottom = 46.0
+offset_bottom = 45.0
 
 [node name="Health" type="Label" parent="Player UI/Panel" unique_id=418149835]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -11.5
-offset_right = 26.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 52.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 10
 label_settings = SubResource("LabelSettings_21xkr")
+horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="HealthBar" type="ProgressBar" parent="Player UI/Panel" unique_id=736928632]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 129.0
+offset_bottom = 14.0
+theme_override_styles/background = ExtResource("17_hibaj")
+theme_override_styles/fill = ExtResource("18_pdsj5")
+value = 75.0
+show_percentage = false
+
+[node name="Total Souls" type="Label" parent="Player UI/Panel" unique_id=1979577445]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 17.0
+
+[node name="Level Souls" type="Label" parent="Player UI/Panel" unique_id=1215048384]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -21.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "Souls:"
+label_settings = SubResource("LabelSettings_m2va7")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GAME OVER" type="CanvasLayer" parent="." unique_id=787187758]
 unique_name_in_owner = true
@@ -647,6 +683,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="GAME OVER/Panel" unique_id=119099177]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -659,9 +696,11 @@ offset_right = 618.5
 offset_bottom = 415.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.36298597, 0.16269663, 0.20114282, 0.5529412)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GAME OVER/Panel" unique_id=1047309888]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -689,15 +728,25 @@ offset_transform_position = Vector2(0, 400)
 shortcut = SubResource("Shortcut_ynf5e")
 text = "RESTART"
 
+[node name="MENUBUTTON" type="Button" parent="GAME OVER/Panel/VBoxContainer" unique_id=674477497]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 2
+offset_transform_position = Vector2(0, 400)
+shortcut = SubResource("Shortcut_ynf5e")
+text = "MAIN MENU"
+
 [node name="GO_AnimationPlayer" type="AnimationPlayer" parent="GAME OVER" unique_id=584274811]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_hptm8")
 
 [node name="PAUSED" type="CanvasLayer" parent="." unique_id=1254224367]
 process_mode = 3
+visible = false
 
 [node name="Menu" parent="PAUSED" unique_id=1332078428 instance=ExtResource("10_hptm8")]
 unique_name_in_owner = true
+process_priority = 1
 offset_left = -576.0
 offset_top = -324.0
 offset_right = -576.0
@@ -707,6 +756,7 @@ offset_bottom = -324.0
 
 [node name="Options" parent="PAUSED/Options" unique_id=1776265203 instance=ExtResource("18_b3802")]
 unique_name_in_owner = true
+process_mode = 3
 
 [node name="FADE_LAYER" type="CanvasLayer" parent="." unique_id=1418338205]
 unique_name_in_owner = true
@@ -717,6 +767,7 @@ offset_left = -3.0
 offset_top = -3.0
 offset_right = 1154.0
 offset_bottom = 651.0
+mouse_filter = 2
 color = Color(0.099985994, 0.099985994, 0.099985994, 1)
 
 [node name="FIO_AnimationPlayer" type="AnimationPlayer" parent="FADE_LAYER" unique_id=984683498]
@@ -729,4 +780,11 @@ libraries/ = SubResource("AnimationLibrary_fevyy")
 [connection signal="player_in_boss_area" from="BOSS_DOOR/PLAYER_entered" to="BOSS_DOOR/BOSS_DOOR_ANIM" method="_on_player_entered_player_in_boss_area"]
 [connection signal="boss_defeated" from="FIRE_DEMON" to="." method="_on_fire_demon_boss_defeated"]
 [connection signal="boss_defeated" from="FIRE_DEMON" to="EXIT_DOOR/EXIT_DOOR_ANIM" method="_on_fire_demon_boss_defeated"]
+[connection signal="died" from="PLAYER" to="." method="_on_player_died"]
+[connection signal="player_died" from="PLAYER" to="." method="_on_player_died"]
+[connection signal="player_died" from="PLAYER" to="Background" method="_on_player_died"]
+[connection signal="souls_level_changed" from="PLAYER" to="." method="_on_player_souls_level_changed"]
+[connection signal="souls_total_changed" from="PLAYER" to="." method="_on_player_souls_total_changed"]
+[connection signal="pressed" from="GAME OVER/Panel/VBoxContainer/MENUBUTTON" to="." method="_on_menu_pressed"]
+[connection signal="go_to_menu" from="PAUSED/Menu" to="." method="_on_menu_pressed"]
 [connection signal="closed" from="PAUSED/Options/Options" to="PAUSED/Menu" method="_on_options_closed"]

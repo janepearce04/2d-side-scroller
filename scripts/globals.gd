@@ -7,6 +7,7 @@ var playerBody: CharacterBody2D
 var playerAlive: bool
 var playerDamageZone: Area2D
 var playerDamageAmt: float
+var total_player_souls: float
 
 var flierDamageZone: Area2D
 var flierDamageAmt: float

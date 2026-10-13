@@ -24,7 +24,7 @@ func flash_dash() -> void:
 
 func flash_charge() -> void:
 	var tween1 = get_tree().create_tween()
-	tween1.tween_property(%Visuals, "modulate", Color.ORANGE_RED, 0.2)
+	tween1.tween_property(%Visuals, "modulate", Color(0.9, 0.4, 0, 0.9), 0.2)
 	fire_charged.emit()
 
 func flash_fire() -> void:

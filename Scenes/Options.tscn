@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://csimeewevvlnm"]
 
 [ext_resource type="Script" uid="uid://boikex2r5re8l" path="res://scripts/options.gd" id="1_hg628"]
-[ext_resource type="Shader" uid="uid://dfd5gesyhhles" path="res://fx/BLUR.gdshader" id="1_qqnya"]
+[ext_resource type="Shader" uid="uid://dfd5gesyhhles" path="res://other_ui/BLUR.gdshader" id="1_qqnya"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hg628"]
 shader = ExtResource("1_qqnya")
 shader_parameter/lod = 1.5
 
 [node name="Options" type="Control" unique_id=1776265203]
-process_mode = 3
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

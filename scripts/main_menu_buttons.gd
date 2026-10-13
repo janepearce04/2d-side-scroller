@@ -2,15 +2,18 @@ extends Node2D
 
 const GAME_SCENE := "res://Scenes/main.tscn"
 
+@export var start_pressed := false
 @export var scroll_speed := 200.0
 
 @onready var menu_buttons: Control = $Control
 @onready var parallax: ParallaxBackground = $Background2/ParallaxBackground
 
 func _ready() -> void:
+	get_tree().paused = false
+	start_pressed = false
 	Globals.game_state = Globals.GameState.MAINMENU
 	menu_buttons.visible = true
-	ResourceLoader.load_threaded_request(GAME_SCENE)
+	#%AnimationPlayer.play('FADE', -1, -1.0, true)
 
 func _process(delta: float) -> void:
 	if Globals.game_state == Globals.GameState.MAINMENU:
@@ -21,16 +24,15 @@ func _process(delta: float) -> void:
 	else:
 		menu_buttons.visible = false
 
-
 func _on_start_pressed() -> void:
-	var game := ResourceLoader.load_threaded_get(GAME_SCENE) as PackedScene
+	if start_pressed:
+		return
+	if Globals.game_state != Globals.GameState.MAINMENU:
+		return
+	start_pressed = true
 	%AnimationPlayer.play('FADE')
-	await %AnimationPlayer.animation_finished
-	if game:
-		get_tree().change_scene_to_packed(game)
-	else:
-		get_tree().change_scene_to_file(GAME_SCENE)
-
+	if get_tree().change_scene_to_file(GAME_SCENE) != OK:
+		start_pressed = false
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

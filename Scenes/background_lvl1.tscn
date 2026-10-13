@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://7ql0wcq5jna3"]
 
 [ext_resource type="Texture2D" uid="uid://5hsis5uwbakv" path="res://environment/backgrounds/parallax/Layer_0011_0.png" id="1_mxslu"]
+[ext_resource type="Script" uid="uid://ow4cp7lbsws5" path="res://scripts/background_lvl_1.gd" id="1_ofmrm"]
 [ext_resource type="Texture2D" uid="uid://bujdiftuphhe" path="res://environment/backgrounds/parallax/Layer_0009_2.png" id="3_8qwv4"]
 [ext_resource type="Texture2D" uid="uid://dr7ukuoauyd0u" path="res://environment/backgrounds/parallax/Layer_0008_3.png" id="4_x0iyk"]
 [ext_resource type="Texture2D" uid="uid://cnndg7hueb4ug" path="res://environment/backgrounds/parallax/Layer_0007_Lights.png" id="5_76rum"]
@@ -12,8 +13,46 @@
 [ext_resource type="Texture2D" uid="uid://btf8mthggjn0d" path="res://environment/backgrounds/parallax/Layer_0001_8.png" id="11_ehdhf"]
 [ext_resource type="Texture2D" uid="uid://c68atfaukpkb7" path="res://environment/backgrounds/parallax/Layer_0000_9.png" id="12_t54g0"]
 
+[sub_resource type="Animation" id="Animation_ro1g1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParallaxBackground/death_fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mxslu"]
+resource_name = "play_death_fade"
+length = 0.33333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParallaxBackground/death_fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333337),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.61960787)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ofmrm"]
+_data = {
+&"RESET": SubResource("Animation_ro1g1"),
+&"play_death_fade": SubResource("Animation_mxslu")
+}
+
 [node name="Background" type="Node2D" unique_id=922490698]
 modulate = Color(0.7341732, 0.78436816, 0.77231354, 1)
+script = ExtResource("1_ofmrm")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=436268116]
 scroll_offset = Vector2(0, -90)
@@ -112,7 +151,8 @@ color = Color(0.5686275, 0.5686275, 0.5686275, 0.22745098)
 metadata/_edit_use_anchors_ = true
 
 [node name="ParallaxLayer11" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1706500301]
-z_index = 1
+z_index = 2
+z_as_relative = false
 y_sort_enabled = true
 motion_scale = Vector2(0.9, 1)
 motion_mirroring = Vector2(928, 0)
@@ -123,10 +163,28 @@ texture = ExtResource("11_ehdhf")
 
 [node name="ParallaxLayer12" type="ParallaxLayer" parent="ParallaxBackground" unique_id=553547362]
 modulate = Color(0.78703874, 0.90392786, 0.80744666, 1)
-z_index = 4
+z_index = 2
+z_as_relative = false
 y_sort_enabled = true
 motion_mirroring = Vector2(928, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer12" unique_id=1268819403]
 position = Vector2(464, 420.5)
 texture = ExtResource("12_t54g0")
+
+[node name="death_fade" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1503000901]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+z_index = 3
+z_as_relative = false
+motion_mirroring = Vector2(1160, 0)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/death_fade" unique_id=511401261]
+offset_right = 1160.0
+offset_bottom = 817.0
+mouse_filter = 2
+color = Color(0.041191757, 0.05901725, 0.10520258, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1867191784]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_ofmrm")
