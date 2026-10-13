@@ -56,7 +56,8 @@ func _on_player_died() -> void:
  
 func _restart() -> void:
 	%"GAME OVER".visible = false
-	get_tree().reload_current_scene()
+	if Globals.game_state == Globals.GameState.LEVEL or Globals.game_state == Globals.GameState.FAIL:
+		get_tree().reload_current_scene()
 
 func _on_fire_demon_boss_defeated() -> void:
 	%WINNER.visible = true

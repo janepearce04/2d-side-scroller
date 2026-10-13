@@ -78,6 +78,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	super()
+	soul_value = 10
 	add_to_group("boss")
 	add_to_group("mobs")
 	art_faces_left = true
@@ -369,7 +370,6 @@ func _on_hurt() -> void:
 		%AnimationPlayer.play_hurt()
 		_shuffle_steps_left = 0
 		state = State.HURT
-		await %AnimationPlayer.animation_finished
 		state_time = hurt_stun_time
 
 
@@ -383,14 +383,13 @@ func _hurt_state(delta: float) -> void:
 		state = State.CHASE
 
 
-func _die() -> void:
+func _die(Variant) -> void:
 	state = State.DEAD
 	contact_damage = 0.0
 	%AnimationPlayer.speed_scale = 1.0
 	health_bar.visible = false
-	await super()
+	await super(soul_value)
 	boss_defeated.emit()
-
 
 # ---------- HELPERS ----------
 func _dir_to_target() -> float:

@@ -20,11 +20,11 @@ var mob_script: Script = preload("res://scripts/mob_base.gd")
 @export var knockback := Vector2(200.0, -150.0)
 
 @export_group("Movement")
-@export var max_speed := 150.0 + 80 * Globals.game_difficulty
-@export var acceleration := 1600.0
-@export var deceleration := 2400.0
-@export var jump_acceleration := 900.0
-@export var jump_deceleration := 1800.0
+@export var max_speed := 150.0 + 120 / Globals.game_difficulty
+@export var acceleration := 1200.0
+@export var deceleration := 2200.0
+@export var jump_acceleration := 800.0
+@export var jump_deceleration := 1700.0
 @export var fall_acceleration := 1400.0
 @export var fall_deceleration := 1900.0
 
@@ -363,9 +363,8 @@ func _check_contact_damage() -> void:
 		if attacker == null or attacker == self:
 			#print("attacker null or self")
 			continue
-		knockback = Vector2(500.0, -200.0)
 		var dmg = attacker.get_hitbox_damage() if attacker.has_method("get_hitbox_damage") else attacker.get("contact_damage")
-		take_damage(dmg if dmg != null else contact_damage_default, attacker.global_position)
+		take_damage(dmg if dmg != null else contact_damage_default, attacker.global_position, Vector2(500.0, -200.0))
 		print(dmg, " damage to player")
 		return
 
@@ -403,7 +402,7 @@ func take_damage(damage: float, source_position := Vector2.INF, kb := Vector2.IN
 		var away := global_position.x - source_position.x
 		if not is_zero_approx(away):
 			push = signf(away)
-	velocity = Vector2(push * knockback.x, knockback.y)
+	velocity = Vector2(push * kb.x, kb.y)
 	await %AnimationPlayer.animation_finished
 	knockback = Vector2(200.0, -150.0)
 

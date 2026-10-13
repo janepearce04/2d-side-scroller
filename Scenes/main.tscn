@@ -324,6 +324,7 @@ _data = {
 }
 
 [node name="MAIN" type="Node2D" unique_id=403668298]
+z_as_relative = false
 script = ExtResource("1_21xkr")
 
 [node name="floor" type="StaticBody2D" parent="." unique_id=114725001]
@@ -358,7 +359,6 @@ position = Vector2(8251, -453)
 shape = SubResource("RectangleShape2D_t2dwb")
 
 [node name="Background" parent="." unique_id=922490698 instance=ExtResource("3_8gbba")]
-z_index = -1
 z_as_relative = false
 position = Vector2(-2.6, -6)
 
@@ -500,7 +500,7 @@ position = Vector2(7565, 814)
 
 [node name="PLAYER" parent="." unique_id=1777336445 instance=ExtResource("14_1w6v2")]
 unique_name_in_owner = true
-position = Vector2(103, 746)
+position = Vector2(80, 746)
 jump_cut_multiplier = 0.249
 gravity = 800.0
 fall_gravity = 1200.0

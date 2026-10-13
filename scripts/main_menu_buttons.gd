@@ -32,6 +32,7 @@ func _on_start_pressed() -> void:
 	start_pressed = true
 	%AnimationPlayer.play('FADE')
 	if get_tree().change_scene_to_file(GAME_SCENE) != OK:
+		print("start is now false")
 		start_pressed = false
 
 func _on_quit_pressed() -> void:

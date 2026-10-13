@@ -28,6 +28,10 @@ func _ready() -> void:
 	add_to_group('mobs')
 	%AnimationPlayer.play('idle')
 
+	for mob in get_tree().get_nodes_in_group("mobs"):
+		if mob.has_signal("mob_died"):
+			mob.mob_died.connect(target.add_souls)
+
 func _physics_process(delta: float) -> void:
 	Globals.crawlerDamageAmt = 2
 	Globals.crawlerDamageZone = %"FLIER BOX"

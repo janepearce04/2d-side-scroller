@@ -1211,7 +1211,7 @@ libraries/ = SubResource("AnimationLibrary_5o5jg")
 script = ExtResource("8_brpj1")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=596246050]
-zoom = Vector2(1.8, 1.8)
+zoom = Vector2(1.89, 1.89)
 limit_left = 0
 limit_top = -1000
 limit_right = 11000

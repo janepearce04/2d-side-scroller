@@ -163,12 +163,14 @@ texture = ExtResource("11_ehdhf")
 
 [node name="ParallaxLayer12" type="ParallaxLayer" parent="ParallaxBackground" unique_id=553547362]
 modulate = Color(0.78703874, 0.90392786, 0.80744666, 1)
-z_index = 2
+z_index = 3
 z_as_relative = false
 y_sort_enabled = true
 motion_mirroring = Vector2(928, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer12" unique_id=1268819403]
+z_index = 3
+z_as_relative = false
 position = Vector2(464, 420.5)
 texture = ExtResource("12_t54g0")
 
